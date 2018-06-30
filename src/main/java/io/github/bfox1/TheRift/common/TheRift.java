@@ -82,22 +82,5 @@ public class TheRift
         //((ServerCommandManager)MinecraftServer.getServer().getCommandManager()).registerCommand(new CommandSao());
     }
 
-    @Mod.EventBusSubscriber
-    public static class RegisterInit
-    {
-        @SubscribeEvent
-        public void registerItemEvent(RegistryEvent.Register<Item> event)
-        {
-            System.out.println("I am registering! :) ");
-            TheRift.proxy.registerItems(event);
-        }
 
-        @SubscribeEvent
-        public void registerBlockEvent(RegistryEvent.Register<Block> event)
-        {
-
-            TheRift.proxy.registerBlocks(event);
-
-        }
-    }
 }

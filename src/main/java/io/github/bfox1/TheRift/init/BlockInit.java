@@ -1,7 +1,10 @@
 package io.github.bfox1.TheRift.init;
 
 import io.github.bfox1.TheRift.client.creativetabs.RiftTabManager;
+import io.github.bfox1.TheRift.common.TheRift;
 import io.github.bfox1.TheRift.common.blocks.*;
+import io.github.bfox1.TheRift.common.util.ClassReference;
+import io.github.bfox1.TheRift.common.util.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -10,10 +13,14 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by bfox1 on 4/3/2016.
@@ -23,8 +30,8 @@ import java.util.List;
 public class BlockInit
 {
 
-    public static final HashMap<String, Block> RiftBlocks = new HashMap<>();
-
+    public static  HashMap<String, Block> RiftBlocks = new HashMap<>();
+    public static final Set<Block> items = new HashSet<Block>();
 
     static
     {
@@ -47,6 +54,7 @@ public class BlockInit
 
             block.setUnlocalizedName(block.getRegistryName().toString());
             event.getRegistry().register(block);
+            items.add(block);
 
            // ItemBlock item = new ItemBlock(block);
            // item.setRegistryName(block.getRegistryName());
@@ -67,6 +75,8 @@ public class BlockInit
             item.setRegistryName(block.getRegistryName());
 
             event.getRegistry().register(item);
+
+            //ItemInit.items.add(item);
         }
     }
     public static void registerRender()
@@ -83,6 +93,19 @@ public class BlockInit
     public static Block getRegItem(String name)
     {
         return RiftBlocks.get(name);
+    }
+
+    @Mod.EventBusSubscriber(modid = Reference.MODID)
+    public static class RegisterInit
+    {
+
+        @SubscribeEvent
+        public void registerBlockEvent(RegistryEvent.Register<Block> event)
+        {
+
+            TheRift.proxy.registerBlocks(event);
+
+        }
     }
 
 }
