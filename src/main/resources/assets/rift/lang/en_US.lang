@@ -1,0 +1,34 @@
+#Blocks
+###########################
+
+tile.rift:dematerializer.name=Dematerializer
+tile.rift:riftchest.name=Rift Chest
+tile.rift:riftedobsidian.name=Rifted Obsidian
+tile.rift:processor.name=Processor
+tile.rift:riftvessel.name=Rift Vessel
+
+
+#Items
+#############################
+
+item.rift:barubu_two.name=Barubu Two
+item.rift:barubu_one.name=Barubu One
+item.rift:barubu_three.name=Barubu Three
+item.rift:riftessencechunk.name=Essence Chunk
+
+
+item.rift:soliddiamondchunk.name=Solid Diamond Chunk
+item.rift:riftmechanism.name=Rift Mechanism
+item.rift:encrustedsteel.name=Encrusted Steel
+item.rift:materializedsteel.name=Materialized Steel
+item.rift:empoweredpearl.name=Empowered Pearl
+item.rift:unknowneye.name=Unknown Eye
+item.rift:diamondcore.name=Diamond Core
+item.rift:essencecluster.name=Essence Cluster
+item.rift:riftblade.name=Rift Blade
+item.rift:pearl_fragment.name=Pearl Fragment
+item.rift:riftfluxcapacitor.name=Rift Flux Capacitor
+
+#Entities
+#############################
+entity.rift.rift_creeper.name=Rift Creeper

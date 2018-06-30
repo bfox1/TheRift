@@ -1,0 +1,9 @@
+{
+  "parent": "block/orientable",
+  "textures": {
+    "top": "rift:blocks/dematerializer_topbottom",
+    "front": "rift:blocks/dematerializer_front",
+    "side": "rift:blocks/dematerializer_side",
+    "bottom": "rift:blocks/dematerializer_topbottom"
+  }
+}

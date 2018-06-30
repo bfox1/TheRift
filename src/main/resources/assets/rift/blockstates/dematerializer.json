@@ -1,0 +1,16 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "textures": {
+
+    },
+    "uvlock": true
+  },
+  "variants": {
+    "facing=north": { "model": "rift:dematerializer" },
+    "facing=south": { "model": "rift:dematerializer", "y": 180 },
+    "facing=west":  { "model": "rift:dematerializer", "y": 270 },
+    "facing=east":  { "model": "rift:dematerializer", "y": 90 }
+  }
+
+}
