@@ -221,18 +221,5 @@ public class ForgeEventHandler
         }
     }
 
-    @SubscribeEvent
-    public void registerItemEvent(RegistryEvent.Register<Item> event)
-    {
-        System.out.println("I am registering! :) ");
-        TheRift.proxy.registerItems(event);
-    }
 
-    @SubscribeEvent
-    public void registerBlockEvent(RegistryEvent.Register<Block> event)
-    {
-
-        TheRift.proxy.registerBlocks(event);
-
-    }
 }
