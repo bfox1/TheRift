@@ -34,6 +34,7 @@ public interface RiftProxy
 
     void addChestLoot();
 
+    @Deprecated
     void registerRenderers();
 
     void preInit(FMLPreInitializationEvent event);

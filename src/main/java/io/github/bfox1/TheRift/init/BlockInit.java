@@ -54,7 +54,7 @@ public class BlockInit
 
             block.setUnlocalizedName(block.getRegistryName().toString());
             event.getRegistry().register(block);
-            items.add(block);
+            //items.add(block);
 
            // ItemBlock item = new ItemBlock(block);
            // item.setRegistryName(block.getRegistryName());
@@ -63,7 +63,7 @@ public class BlockInit
            // ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
         }
 
-        RiftBlocks.forEach((k,v) -> v.setCreativeTab(RiftTabManager.SaoBlocks) );
+
 
     }
 
@@ -71,17 +71,24 @@ public class BlockInit
     {
         for(Block block : RiftBlocks.values())
         {
+            System.out.println(block.getRegistryName().toString());
+
             ItemBlock item = new ItemBlock(block);
-            item.setRegistryName(block.getRegistryName());
-
+            item.setRegistryName(block.getRegistryName().toString().substring(5));
+            item.setUnlocalizedName(item.getRegistryName().toString());
             event.getRegistry().register(item);
-
+            ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(block.getRegistryName().toString()));
             //ItemInit.items.add(item);
+
         }
+        RiftBlocks.forEach((k,v) -> v.setCreativeTab(RiftTabManager.SaoBlocks) );
     }
+
+    @Deprecated
     public static void registerRender()
     {
-        RiftBlocks.forEach((k,v) -> ModelLoader.setCustomModelResourceLocation(ItemBlock.getItemFromBlock(v), 0, new ModelResourceLocation(ItemBlock.getItemFromBlock(v).getRegistryName(), "inventory")));
+        System.out.println("Registering renders");
+        //RiftBlocks.forEach((k,v) -> ModelLoader.setCustomModelResourceLocation(ItemBlock.getItemFromBlock(v), 0, new ModelResourceLocation(ItemBlock.getItemFromBlock(v).getRegistryName().toString())));
     }
 
     private static void setRegBlock(String name, Material material)
@@ -93,19 +100,6 @@ public class BlockInit
     public static Block getRegItem(String name)
     {
         return RiftBlocks.get(name);
-    }
-
-    @Mod.EventBusSubscriber(modid = Reference.MODID)
-    public static class RegisterInit
-    {
-
-        @SubscribeEvent
-        public void registerBlockEvent(RegistryEvent.Register<Block> event)
-        {
-
-            TheRift.proxy.registerBlocks(event);
-
-        }
     }
 
 }

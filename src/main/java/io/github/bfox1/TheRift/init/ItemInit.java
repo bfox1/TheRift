@@ -27,35 +27,28 @@ import java.util.Set;
 public class ItemInit
 {
 
-
     public static HashMap<String, IRiftItem> RIFTITEM = new HashMap<>();
-    //public static  Set<Item> items = new HashSet<Item>();
 
      static
     {
-
-
-
         RIFTITEM.put("riftessencechunk", new RiftEssenceChunk().setRegName("riftessencechunk"));
         RIFTITEM.put("riftmechanism", new RiftMechanism().setRegName("riftmechanism"));
-        for(int i = 0; i < 3; i++)
-        {
-            ContainmentValve valve = ContainmentValve.getTieredValve(i);
-            if(valve != null)
-            RIFTITEM.put(valve.getContainmentValve().getValveName(), valve.setRegName(valve.getContainmentValve().getValveName()));
-        }
         RIFTITEM.put("unknowneye", new RiftItem().setRegName("unknowneye"));
         RIFTITEM.put("materializedsteel",new RiftItem().setRegName("materializedsteel"));
         RIFTITEM.put("empoweredpearl",new RiftItem().setRegName("empoweredpearl"));
         RIFTITEM.put("diamondcore", new RiftItem().setRegName("diamondcore"));
+        RIFTITEM.put("riftfluxcapacitor", new ItemRiftFluxCapacitor().setRegName("riftfluxcapacitor"));
+        RIFTITEM.put("riftblade", new ItemSwordRiftBlade(Item.ToolMaterial.DIAMOND).setRegName("riftblade"));
+
+        setRegItem("pearl_fragment");
         setRegItem("encrustedsteel");
         setRegItem("soliddiamondchunk");
         setRegItem("essencecluster");
-        RIFTITEM.put("riftfluxcapacitor", new ItemRiftFluxCapacitor().setRegName("riftfluxcapacitor"));
-        RIFTITEM.put("riftblade", new ItemSwordRiftBlade(Item.ToolMaterial.DIAMOND).setRegName("riftblade"));
-        setRegItem("pearl_fragment");
+
         setRegItem(new ItemRiftPickaxe(MaterialEnumInit.getToolMaterial(MaterialEnumInit.RiftMaterialEnum.RIFT_CHUNK)), "essence_chunk_pickaxe");
         setRegItem(new DebugItem(), "debug_item");
+
+        loadValves();
     }
 
 
@@ -67,15 +60,18 @@ public class ItemInit
 
             event.getRegistry().register(item.getItem());
 
+            ModelLoader.setCustomModelResourceLocation(((Item)item), 0, new ModelResourceLocation(((Item)item).getRegistryName().toString()));
 
+            ((Item) item).setCreativeTab(RiftTabManager.SaoItems);
         }
 
-        RIFTITEM.forEach((k,v) -> ((Item)v).setCreativeTab(RiftTabManager.SaoItems) );
+        //RIFTITEM.forEach((k,v) -> ((Item)v).setCreativeTab(RiftTabManager.SaoItems) );
     }
 
+    @Deprecated
     public static void registerRend()
     {
-        RIFTITEM.forEach((k,v) -> ModelLoader.setCustomModelResourceLocation(((Item)v), 0, new ModelResourceLocation(((Item)v).getRegistryName(), "inventory")) );
+        //RIFTITEM.forEach((k,v) -> ModelLoader.setCustomModelResourceLocation(((Item)v), 0, new ModelResourceLocation(((Item)v).getRegistryName().toString())) );
 
     }
 
@@ -99,6 +95,19 @@ public class ItemInit
     {
         return RIFTITEM.get(name);
     }
+
+    public static void loadValves()
+    {
+        for(int i = 0; i < 3; i++) //In some ways, this is redundant.
+        {
+            ContainmentValve valve = ContainmentValve.getTieredValve(i); // Containment Valves are created within the Containment Valve Class.
+
+            if(valve != null) //Redundant at this time, Containment valves are expected to increase with different properties. Hence Checking if it was null.
+                RIFTITEM.put(valve.getContainmentValve().getValveName(), valve.setRegName(valve.getContainmentValve().getValveName()));
+        }
+    }
+
+
 
 
 

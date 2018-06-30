@@ -2,6 +2,7 @@ package io.github.bfox1.TheRift.init;
 
 import io.github.bfox1.TheRift.common.TheRift;
 import io.github.bfox1.TheRift.common.util.Reference;
+import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -15,5 +16,13 @@ public class RegisterStuff
     {
         System.out.println("I am registering! :) ");
         TheRift.proxy.registerItems(event);
+    }
+
+    @SubscribeEvent
+    public void registerBlockEvent(RegistryEvent.Register<Block> event)
+    {
+
+        TheRift.proxy.registerBlocks(event);
+
     }
 }
