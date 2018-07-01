@@ -3,12 +3,10 @@ package io.github.bfox1.TheRift.init;
 
 import io.github.bfox1.TheRift.api.items.IRiftItem;
 import io.github.bfox1.TheRift.client.creativetabs.RiftTabManager;
-import io.github.bfox1.TheRift.common.TheRift;
 import io.github.bfox1.TheRift.common.items.*;
 import io.github.bfox1.TheRift.common.items.swords.ItemSwordRiftBlade;
 import io.github.bfox1.TheRift.common.items.tools.ItemRiftPickaxe;
 import io.github.bfox1.TheRift.common.util.Reference;
-import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 
 import net.minecraft.item.Item;
@@ -16,13 +14,9 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.registries.IForgeRegistry;
 
 
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
 
 @Mod.EventBusSubscriber(modid = Reference.MODID)
 public class ItemInit
@@ -63,10 +57,10 @@ public class ItemInit
 
             ModelLoader.setCustomModelResourceLocation(((Item)item), 0, new ModelResourceLocation(((Item)item).getRegistryName().toString()));
 
-            ((Item) item).setCreativeTab(RiftTabManager.SaoItems);
+            ((Item) item).setCreativeTab(RiftTabManager.RIFT_ITEMS_TAB);
         }
 
-        //RIFTITEM.forEach((k,v) -> ((Item)v).setCreativeTab(RiftTabManager.SaoItems) );
+        //RIFTITEM.forEach((k,v) -> ((Item)v).setCreativeTab(RiftTabManager.RIFT_ITEMS_TAB) );
     }
 
     @Deprecated

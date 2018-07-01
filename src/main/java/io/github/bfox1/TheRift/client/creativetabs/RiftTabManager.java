@@ -23,11 +23,11 @@ public class RiftTabManager extends CreativeTabs
         super(label);
     }
 
-    public static final RiftTabManager SaoBlocks = new RiftTabManager("Sao Blocks").setItem(Item.getItemFromBlock(BlockInit.RiftBlocks.get("riftchest")));
-    public static final RiftTabManager SaoItems = new RiftTabManager("Sao Items").setItem((Item)ItemInit.RIFTITEM.get("riftessencechunk"));
+    public static final RiftTabManager RIFT_BLOCKS_TAB = new RiftTabManager("Sao Blocks").setItem(Item.getItemFromBlock(BlockInit.getRegItem("riftchest")));
+    public static final RiftTabManager RIFT_ITEMS_TAB = new RiftTabManager("Sao Items").setItem((Item)ItemInit.RIFTITEM.get("riftessencechunk"));
 
     /**
-     * This method is used for setting TabIcon for creative Tab for Sao.
+     * This method is used for setting TabIcon for creative Tab for Rift.
      * If you add Null into its parameters the Creative tab will return Barrier block
      * From minecraft.
      * @param item

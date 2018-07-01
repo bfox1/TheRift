@@ -13,7 +13,7 @@ public class RiftItem extends Item implements IRiftItem
     public RiftItem()
     {
         super();
-        //this.setCreativeTab(RiftTabManager.SaoItems);
+        //this.setCreativeTab(RiftTabManager.RIFT_ITEMS_TAB);
     }
 
 

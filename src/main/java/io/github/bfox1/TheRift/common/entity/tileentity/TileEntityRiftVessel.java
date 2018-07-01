@@ -29,8 +29,8 @@ public class TileEntityRiftVessel extends AbstractRiftIventoryTileEntity impleme
 
     public TileEntityRiftVessel()
     {
-        this.essence = new JoryuEssence();
-        this.essence.setMaxRe(50000);
+        //this.essence = new JoryuEssence();
+        //this.essence.setMaxRe(50000);
     }
 
     @Override

@@ -130,11 +130,11 @@ public class ContainerDematerializer extends Container
     @Override
     public ItemStack transferStackInSlot(EntityPlayer player, int index)
     {
-        ItemStack stack = null;
+        ItemStack stack = ItemStack.EMPTY;
         Slot slot = this.inventorySlots.get(index);
         System.out.println("HI " + index);
 
-        if(slot != null && slot.getHasStack())
+        if(!slot.getStack().isEmpty() && slot.getHasStack())
         {
             ItemStack stack1 = slot.getStack();
             stack = stack1.copy();
@@ -144,7 +144,7 @@ public class ContainerDematerializer extends Container
                 if(!this.mergeItemStack(stack1, 4, 39, true))
                 {
                     System.out.println("ID : 1");
-                    return null;
+                    return ItemStack.EMPTY;
                 }
 
                 slot.onSlotChange(stack1, stack);
@@ -157,7 +157,7 @@ public class ContainerDematerializer extends Container
                     if(!this.mergeItemStack(stack1, 0, 1, false))
                     {
                         System.out.println("ID : 2");
-                        return null;
+                        return ItemStack.EMPTY;
                     }
                 }
                 else if(stack1.getItem() instanceof ContainmentValve)
@@ -165,7 +165,7 @@ public class ContainerDematerializer extends Container
                     if(!this.mergeItemStack(stack1, 2,3, false))
                     {
                         System.out.println("ID : 3");
-                        return null;
+                        return ItemStack.EMPTY;
                     }
                 }
                 else if(index >=4 && index < 30)
@@ -173,20 +173,20 @@ public class ContainerDematerializer extends Container
                     if(!this.mergeItemStack(stack1, 30, 39, false))
                     {
                         System.out.println("ID : 4");
-                        return null;
+                        return ItemStack.EMPTY;
                     }
                 }
                 else if(index >= 30 && index < 39 && !this.mergeItemStack(stack1, 4, 30, false))
                 {
                     System.out.println("ID : 5");
-                    return null;
+                    return ItemStack.EMPTY;
                 }
 
             }
             else if(!this.mergeItemStack(stack1, 4, 39, false))
             {
                 System.out.println("ID : 6");
-                return null;
+                return ItemStack.EMPTY;
             }
 
             if(stack1.getCount() == 0)
@@ -203,7 +203,7 @@ public class ContainerDematerializer extends Container
             if(stack1.getCount() == stack.getCount())
             {
                 System.out.println("ID : 9");
-                return null;
+                return ItemStack.EMPTY;
             }
 
             slot.onTake(player, stack1);

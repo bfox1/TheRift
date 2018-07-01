@@ -7,7 +7,16 @@ import net.minecraft.item.Item;
  */
 public interface IRiftItem {
 
+    /**
+     * Method for an RiftItem to set the registry name.
+     * @param s
+     * @return
+     */
     IRiftItem setRegName(String s);
 
+    /**
+     * Method to get the Item Object from a RiftItem Object.
+     * @return
+     */
     Item getItem();
 }

@@ -4,6 +4,8 @@ import io.github.bfox1.TheRift.api.containmentvalve.IContainmentValve;
 
 /**
  * Created by bfox1 on 11/7/2016.
+ *
+ * TODO: Clarification on improved Documentation
  */
 public interface IRiftEssence
 {
@@ -28,7 +30,7 @@ public interface IRiftEssence
 
     /**
      * Adds to the Raw Essence while adding to the Comparable Essence. This should ONLY be used for generation of
-     * Rift Essence. Comparable Essence to Comparable does not exist, only the transfer of Rift Essence, for transfering
+     * Rift Essence. Comparable Essence to Comparable does not exist, only the transfer of Rift Essence, for transferring
      * of Rift Essence, Look at IRiftEssence#addRawEssence
      */
     void addEssence(int i, double essenceMuliplier);
@@ -45,7 +47,12 @@ public interface IRiftEssence
 
     String getName();
 
-
+    /**
+     * Translate the ComparableEssence into RiftEssence, this does not include the ContainmentValve multiplier if any.
+     * @param comparableEssence
+     * @param comparableEssenceMultiplier
+     * @return
+     */
     int translateToRiftEssence(int comparableEssence, double comparableEssenceMultiplier);
 
     int translateToComparableEssence(double comparableEssenceMultiplier);

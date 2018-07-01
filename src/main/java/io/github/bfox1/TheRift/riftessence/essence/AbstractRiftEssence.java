@@ -30,6 +30,8 @@ public abstract class AbstractRiftEssence implements IRiftEssence
     {
         try
         {
+
+            //NOT Sure why this is here, but looking to improve formula for better understanding
             this.maxRe = (int) (valve.getValveName().equalsIgnoreCase("barubu_one") ? maxRe / valve.getMultiplier() : (valve.getValveName().equalsIgnoreCase("barubu_two") ? maxRe / valve.getMultiplier() :
                     (valve.getValveName().equalsIgnoreCase("barubu_three") ? maxRe / valve.getMultiplier() : maxRe)));
             if (this.re > maxRe) {

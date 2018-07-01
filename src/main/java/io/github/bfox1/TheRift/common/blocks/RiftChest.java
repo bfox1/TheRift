@@ -34,7 +34,7 @@ public class RiftChest extends BlockContainer
     public RiftChest()
     {
         super(Material.ROCK);
-        //this.setCreativeTab(RiftTabManager.SaoBlocks);
+        //this.setCreativeTab(RiftTabManager.RIFT_BLOCKS_TAB);
 
     }
 

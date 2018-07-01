@@ -21,6 +21,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 /**
@@ -48,6 +49,7 @@ public class TileEntityDematerializer extends AbstractRiftSidedTileEntity implem
     {
         this.essence = new JoryuEssence();
         essence.setMaxRe(5000);
+
     }
 
 
@@ -131,9 +133,9 @@ public class TileEntityDematerializer extends AbstractRiftSidedTileEntity implem
     }
 
     @Override
-    public void setInventorySlotContents(int index, @Nullable ItemStack stack)
+    public void setInventorySlotContents(int index,  ItemStack stack)
     {
-        boolean flag = stack != null && stack.isItemEqual(this.slots.get(index)) && ItemStack.areItemStackTagsEqual(stack, this.slots.get(index));
+        boolean flag = !stack.isEmpty() && stack.isItemEqual(this.slots.get(index)) && ItemStack.areItemStackTagsEqual(stack, this.slots.get(index));
 
         this.slots.set(index, stack);
         if (!stack.isEmpty() && stack.getCount() > this.getInventoryStackLimit())
@@ -186,13 +188,15 @@ public class TileEntityDematerializer extends AbstractRiftSidedTileEntity implem
     }
 
     @Override
-    public boolean isUsableByPlayer(EntityPlayer player) {
+    public boolean isUsableByPlayer(EntityPlayer player)
+    {
         return this.getWorld().getTileEntity(this.pos) == this && player.getDistanceSq((double) this.pos.getX() + 0.5D, (double) this.pos.getY() + 0.5D, (double) this.pos.getZ() + 0.5D) <= 64.0D;
     }
 
     @Override
-    public void openInventory(EntityPlayer player) {
-
+    public void openInventory(EntityPlayer player)
+    {
+        System.out.println("Am I working? ");
     }
 
     @Override

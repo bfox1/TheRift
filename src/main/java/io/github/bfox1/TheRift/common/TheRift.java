@@ -45,7 +45,7 @@ public class TheRift
         LogHelper.logger = event.getModLog();
 
         MaterialEnumInit.registerToolMaterial();
-        TileEntityInit.registerTileEntities();
+
         EntityInit.registerEntities();
 
         LogHelper.info("Finally Entering the Modding Scene! ~bfox1");

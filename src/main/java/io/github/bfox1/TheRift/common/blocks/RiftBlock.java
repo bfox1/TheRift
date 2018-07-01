@@ -18,7 +18,7 @@ public class RiftBlock extends Block
     public RiftBlock(Material p_i46399_1_, float hardnessValue)
     {
         super(p_i46399_1_);
-        this.setCreativeTab(RiftTabManager.SaoBlocks);
+        this.setCreativeTab(RiftTabManager.RIFT_BLOCKS_TAB);
         this.HARDNESS_VALUE = hardnessValue;
         this.setBreakable(false);
     }

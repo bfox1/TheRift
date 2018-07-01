@@ -8,6 +8,8 @@ import net.minecraft.util.math.BlockPos;
 
 /**
  * Created by bfox1 on 11/10/2016.
+ *
+ * TODO: DOCUMENTATION COMING SOON
  */
 public interface IRiftLinkableContainer
 {

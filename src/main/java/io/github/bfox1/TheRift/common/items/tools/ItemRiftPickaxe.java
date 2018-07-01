@@ -32,7 +32,7 @@ public class ItemRiftPickaxe extends ItemRiftTool
         Set<Block> blocks =
                 Sets.newHashSet
                         (
-                                BlockInit.RiftBlocks.values()
+                                BlockInit.getRiftBlocks().values()
         );
 
         blocks.addAll(EFFECTIVE_ON);

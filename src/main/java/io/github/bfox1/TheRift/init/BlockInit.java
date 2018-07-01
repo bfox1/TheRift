@@ -2,12 +2,9 @@ package io.github.bfox1.TheRift.init;
 
 import com.google.common.base.Preconditions;
 import io.github.bfox1.TheRift.client.creativetabs.RiftTabManager;
-import io.github.bfox1.TheRift.common.TheRift;
 import io.github.bfox1.TheRift.common.blocks.*;
-import io.github.bfox1.TheRift.common.util.ClassReference;
 import io.github.bfox1.TheRift.common.util.Reference;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
@@ -30,79 +27,84 @@ import java.util.*;
 public class BlockInit
 {
 
-    public static  HashMap<String, Block> RiftBlocks = new HashMap<>();
-    public static final Set<Block> items = new HashSet<Block>();
+    private static  HashMap<String, Block> RiftBlocks = new HashMap<>();
 
     static
     {
 
         RiftBlocks.put("riftchest", new RiftChest().setBlockRegisterName("riftchest"));
         RiftBlocks.put("dematerializer", new Dematerializer().setBlockRegisterName("dematerializer"));
-        setRegBlock("riftedobsidian", Material.GROUND);
         RiftBlocks.put("riftvessel", new RiftEssenceVessel().setBlockRegisterName("riftvessel"));
         RiftBlocks.put("processor", new EssenceProcessor(Material.IRON).setBlockRegisterName("processor"));
+
+        setRegBlock("riftedobsidian", Material.GROUND);
     }
 
+    /**
+     * Subscribed Event Method which registers Blocks
+     * @param event
+     */
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event)
     {
         for(String blockName : RiftBlocks.keySet())
         {
         	final Block block = RiftBlocks.get(blockName);
-			//block.setRegistryName(Reference.MODID, blockName);
-			System.out.println(block.getRegistryName());
 			final ResourceLocation registryName = Objects.requireNonNull(block.getRegistryName());
+
             block.setUnlocalizedName(registryName.toString());
-            System.out.println(block.getUnlocalizedName());
-            System.out.println(block.getLocalizedName());
+
             event.getRegistry().register(block);
-            //items.add(block);
-
-           // ItemBlock item = new ItemBlock(block);
-           // item.setRegistryName(block.getRegistryName());
-
-            //GameRegistry.register(item);
-           // ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
         }
     }
 
+    /**
+     * Subscribed event Method which registers ItemBlocks.
+     * @param event
+     */
     @SubscribeEvent
     public static void registerItemBlocks(RegistryEvent.Register<Item> event)
     {
         for(Block block : RiftBlocks.values())
         {
-            System.out.println(block.getRegistryName().toString());
 
             ItemBlock item = new ItemBlock(block);
             ResourceLocation registryName = Preconditions.checkNotNull(block.getRegistryName(), "Block %s has null registry name", block);
 
-            //item.setUnlocalizedName(Objects.requireNonNull(item.getRegistryName()).toString());
-
-            System.out.println(item.getUnlocalizedName());
-
             event.getRegistry().register(item.setRegistryName(registryName));
             ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(block.getRegistryName().toString()));
-            //ItemInit.items.add(item);
+
+            block.setCreativeTab(RiftTabManager.RIFT_BLOCKS_TAB);
         }
-        RiftBlocks.forEach((k,v) -> v.setCreativeTab(RiftTabManager.SaoBlocks) );
+        TileEntityInit.registerTileEntities();
+       // RiftBlocks.forEach((k,v) -> v.setCreativeTab(RiftTabManager.RIFT_BLOCKS_TAB) );
     }
 
-    @Deprecated
-    public static void registerRender()
-    {
-        System.out.println("Registering renders");
-        //RiftBlocks.forEach((k,v) -> ModelLoader.setCustomModelResourceLocation(ItemBlock.getItemFromBlock(v), 0, new ModelResourceLocation(ItemBlock.getItemFromBlock(v).getRegistryName().toString())));
-    }
-
+    /**
+     * Helper Method for registering Simple Blocks and the material.
+     * @param name
+     * @param material
+     */
     private static void setRegBlock(String name, Material material)
     {
         RiftBlocks.put(name, new Block(material).setRegistryName(name));
         System.out.println(name + " Has been found");
     }
 
+    /**
+     * Static Getter method for retriving Blocks from the HashMap.
+     * @param name
+     * @return
+     */
     public static Block getRegItem(String name)
     {
+        //TODO - Should check if block exists.
         return RiftBlocks.get(name);
+    }
+
+    public static HashMap<String, Block> getRiftBlocks()
+    {
+        return RiftBlocks;
     }
 
 }
