@@ -17,6 +17,7 @@ import net.minecraft.util.math.BlockPos;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 
 /**
@@ -237,6 +238,46 @@ public abstract class AbstractRiftTileEntity extends TileEntityLockable implemen
                 break;
             }
         }
+    }
+
+    public RiftLinkedSide generateHashCode(RiftLinkedSide side)
+    {
+        IInventory inventory = (IInventory)world.getTileEntity(new BlockPos(side.getX(), side.getY(), side.getZ()));
+
+        int hashCode = 0;
+
+        if(inventory.isEmpty())
+        {
+            hashCode = toHashCode(inventory);
+        }
+        else
+        {
+            NonNullList<ItemStack> tempList = NonNullList.withSize(inventory.getSizeInventory(), ItemStack.EMPTY);
+
+            for(int i = 0; i < inventory.getSizeInventory(); i++)
+            {
+                tempList.set(i, inventory.getStackInSlot(i));
+                inventory.setInventorySlotContents(i, ItemStack.EMPTY);
+            }
+
+            hashCode =  toHashCode(inventory);
+
+            for(int i = 0; i < inventory.getSizeInventory(); i++)
+            {
+                inventory.setInventorySlotContents(i, tempList.get(i));
+            }
+            tempList.clear();
+        }
+
+        side.setHashCode(hashCode);
+        return side;
+    }
+
+    private int toHashCode(IInventory iInventory)
+    {
+        Object object = (Object)iInventory;
+
+        return object.hashCode();
     }
 
     /**

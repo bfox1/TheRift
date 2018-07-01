@@ -41,7 +41,14 @@ public class TileEntityRiftChest extends AbstractRiftIventoryTileEntity
     @Override
     public boolean isEmpty()
     {
-        return false;
+        for(ItemStack stack : slots)
+        {
+            if(!stack.isEmpty())
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
@@ -91,6 +98,7 @@ public class TileEntityRiftChest extends AbstractRiftIventoryTileEntity
     @Override
     public void setInventorySlotContents(int index, ItemStack stack)
     {
+        this.slots.set(index, stack);
     }
 
     @Override
@@ -258,9 +266,89 @@ public class TileEntityRiftChest extends AbstractRiftIventoryTileEntity
     {
       //  int z = 0;
         if(this.linkedSides != null)
-        for(RiftLinkedSide side : this.linkedSides)
+        //for(RiftLinkedSide side : this.linkedSides)
         {
-            if(side == null)
+            for(int f = 0; f < this.linkedSides.length; f++)
+            {
+                RiftLinkedSide side = linkedSides[f];
+                if(linkedSides[f] == null)
+                {
+                    //
+                }
+                else
+                {
+                    TileEntity entity = this.getWorld().getTileEntity(new BlockPos(side.getX(), side.getY(), side.getZ()));
+
+                    if(entity != null)
+                    {
+                        //Testing HashCode//
+                        IInventory inventory = (IInventory)entity;
+                        NonNullList list = NonNullList.withSize(inventory.getSizeInventory(), ItemStack.EMPTY);
+                        for(int i = 0; i < inventory.getSizeInventory(); i++)
+                        {
+                            list.set(i, inventory.getStackInSlot(i));
+                        }
+
+                        //END of HashCode Testing//
+                        if(!side.checkHashCode(((Object)list).hashCode()))
+                        {
+                            if (entity instanceof ISidedInventory)
+                            {
+                                ISidedInventory sI = (ISidedInventory) entity;
+
+
+                                int[] slots = sI.getSlotsForFace(side.getFace());
+
+                                for (int i : slots)
+                                {
+
+                                    if (!sI.getStackInSlot(i).isEmpty())
+                                        if (this.canExtractFromSide(sI, sI.getStackInSlot(i), side.getFace(), i, side.isMasterLink()))
+                                        {
+                                            ItemStack stack = sI.getStackInSlot(i);
+
+                                            if (addToSlot(stack))
+                                            {
+                                                System.out.println("IM WORKING and adding items to extract!? ");
+                                                addItemTracer(stack, side);
+                                                sI.setInventorySlotContents(i, ItemStack.EMPTY);
+                                                this.markDirty();
+
+                                            } else
+                                            {
+                                                //
+                                            }
+                                        }
+                                }
+                            }
+                            else if(entity instanceof IInventory)
+                            {
+                                IInventory inv = (IInventory)entity;
+
+                                for(int i = 0; i < inv.getSizeInventory(); i++)
+                                {
+                                    ItemStack stack = inv.getStackInSlot(i);
+
+                                    if(addToSlot(stack))
+                                    {
+                                        addItemTracer(stack,side);
+                                        System.out.println("IM WORKING and adding items to inventory");
+                                        inv.setInventorySlotContents(i, ItemStack.EMPTY);
+                                        this.markDirty();
+                                    }
+                                    else
+                                    {
+                                        //
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+
+                }
+            }
+            /*if(side == null)
             {
                // System.out.println("I appear to be null " + z);
               //  z++;
@@ -269,9 +357,22 @@ public class TileEntityRiftChest extends AbstractRiftIventoryTileEntity
 
             TileEntity entity = this.getWorld().getTileEntity(new BlockPos(side.getX(), side.getY(), side.getZ()));
 
-            if (entity instanceof ISidedInventory)
+            if(entity != null)
             {
-                ISidedInventory sI = (ISidedInventory) entity;
+            //Testing HashCode//
+            IInventory inventory = (IInventory)entity;
+            NonNullList list = NonNullList.withSize(inventory.getSizeInventory(), ItemStack.EMPTY);
+            for(int i = 0; i < inventory.getSizeInventory(); i++)
+            {
+                list.set(i, inventory.getStackInSlot(i));
+            }
+
+            //END of HashCode Testing//
+            if(!side.checkHashCode(((Object)list).hashCode()))
+            {
+                if (entity instanceof ISidedInventory)
+                {
+                    ISidedInventory sI = (ISidedInventory) entity;
 
 
                     int[] slots = sI.getSlotsForFace(side.getFace());
@@ -279,24 +380,26 @@ public class TileEntityRiftChest extends AbstractRiftIventoryTileEntity
                     for (int i : slots)
                     {
 
-                        if(!sI.getStackInSlot(i).isEmpty())
-                        if (this.canExtractFromSide(sI,sI.getStackInSlot(i), side.getFace(), i, side.isMasterLink()))
-                        {
-                            ItemStack stack = sI.getStackInSlot(i);
-
-                            if(addToSlot(stack))
+                        if (!sI.getStackInSlot(i).isEmpty())
+                            if (this.canExtractFromSide(sI, sI.getStackInSlot(i), side.getFace(), i, side.isMasterLink()))
                             {
-                                addItemTracer(stack,side);
-                                sI.setInventorySlotContents(i, ItemStack.EMPTY);
-                                this.markDirty();
+                                ItemStack stack = sI.getStackInSlot(i);
 
+                                if (addToSlot(stack))
+                                {
+                                    System.out.println("IM WORKING and adding items to extract!? ");
+                                    addItemTracer(stack, side);
+                                    sI.setInventorySlotContents(i, ItemStack.EMPTY);
+                                    this.markDirty();
+
+                                } else
+                                    {
+                                    //
+                                }
                             }
-                            else
-                            {
-                                //
-                            }
-                        }
                     }
+                }
+            }
 
             }
             else if(entity instanceof IInventory)
@@ -310,7 +413,7 @@ public class TileEntityRiftChest extends AbstractRiftIventoryTileEntity
                     if(addToSlot(stack))
                     {
                         addItemTracer(stack,side);
-
+                        System.out.println("IM WORKING and adding items to inventory");
                         inv.setInventorySlotContents(i, ItemStack.EMPTY);
                         this.markDirty();
                     }
@@ -320,7 +423,7 @@ public class TileEntityRiftChest extends AbstractRiftIventoryTileEntity
                     }
                 }
             }
-           // z++;
+           // z++;*/
         }
     }
 
@@ -370,15 +473,19 @@ public class TileEntityRiftChest extends AbstractRiftIventoryTileEntity
                             int i = 0;
                             for (ItemStack s : this.slots)
                             {
-                                if (this.canInsertFromSide(iSidedInventory,s,side.getFace(),i,side.isMasterLink()))
+                                if(!s.isEmpty())
                                 {
-                                    if(this.addStackToInventory(s, iSidedInventory))
+                                    if (this.canInsertFromSide(iSidedInventory, s, side.getFace(), i, side.isMasterLink()))
                                     {
-                                        this.markDirty();
-                                        this.slots.set(i, ItemStack.EMPTY);
+                                        if (this.addStackToInventory(s, iSidedInventory))
+                                        {
+                                            System.out.println("What am I doing? Inserting? ");
+                                            this.markDirty();
+                                            this.slots.set(i, ItemStack.EMPTY);
+                                        }
                                     }
+                                    i++;
                                 }
-                                i++;
                             }
 
 
@@ -391,10 +498,14 @@ public class TileEntityRiftChest extends AbstractRiftIventoryTileEntity
                         int i = 0;
                         for (ItemStack s : this.slots)
                         {
-                            if(this.addStackToInventory(s, inventory))
-                            this.slots.set(i, ItemStack.EMPTY);
-                            this.markDirty();
-                            i++;
+                            if(!s.isEmpty())
+                            {
+                                System.out.println("What am I doing? Inserting? something else");
+                                if (this.addStackToInventory(s, inventory))
+                                    this.slots.set(i, ItemStack.EMPTY);
+                                this.markDirty();
+                                i++;
+                            }
                         }
                     }
 
@@ -429,6 +540,7 @@ public class TileEntityRiftChest extends AbstractRiftIventoryTileEntity
                 chest.check = hasLinkedTileEntities();
                 tick = 0;
             }
+
             checkLinkedInventorySides();
             updateTEntities();
             ejectItems();

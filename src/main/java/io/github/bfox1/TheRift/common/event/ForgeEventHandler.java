@@ -96,11 +96,14 @@ public class ForgeEventHandler
     @SubscribeEvent
     public void onRightClickBlock(PlayerInteractEvent.RightClickBlock e)
     {
-
+        System.out.println(":test");
         if(!e.getWorld().isRemote)
         {
+            System.out.println("made it through remote" +
+                    "");
             if(!e.getItemStack().isEmpty() && e.getItemStack().getItem() instanceof RiftMechanism)
             {
+                System.out.println("passed it here. ");
                 RiftMechanism mech = (RiftMechanism)e.getItemStack().getItem();
 
                 if(mech.getRiftAction() == RiftLinkedSide.EnumRiftAction.INSERT || mech.getRiftAction() == RiftLinkedSide.EnumRiftAction.EJECT)

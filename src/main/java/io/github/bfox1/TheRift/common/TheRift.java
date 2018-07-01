@@ -61,17 +61,17 @@ public class TheRift
         LogHelper.info("Initialization Beginning.");
         NetworkRegistry.INSTANCE.registerGuiHandler(Reference.MODID, new GuiHandler());
         LogHelper.info("Initialization Complete!");
-       // proxy.registerEventHandlers();
+
     }
 
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event)
     {
-        MinecraftForge.EVENT_BUS.register(new ForgeEventHandler());
         LogHelper.info("Post-Initialization Beginning");
+        MinecraftForge.EVENT_BUS.register(new ForgeEventHandler());
         LogHelper.info("Post-Initialization Complete");
 
-        //System.out.println(ClassReference.getItem(Reference.MODID, "Elucidator"));
+
     }
 
     @Mod.EventHandler

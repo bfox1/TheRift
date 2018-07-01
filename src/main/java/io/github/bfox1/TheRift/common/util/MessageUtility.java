@@ -42,6 +42,8 @@ public class MessageUtility
             case CONNECTION_LINKED_COMPLETE: msg = "Established Connection between two Blocks!"; break;
             default: break;
         }
+        System.out.println("SPM-1");
+       // player.sendStatusMessage(new TextComponentString(BossInfo.Color.RED + msg), true);
 
         player.sendMessage(new TextComponentString(BossInfo.Color.RED + msg));
     }

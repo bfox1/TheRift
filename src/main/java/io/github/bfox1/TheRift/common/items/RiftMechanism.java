@@ -59,27 +59,34 @@ public class RiftMechanism extends RiftItem
 
         if(entity != null)
         {
+            //Checking if TileEntity is Rift Entity//
             if(isRiftEntity(entity, world))
             {
+
                 AbstractRiftTileEntity rEntity = (AbstractRiftTileEntity) entity;
                 AbstractRiftTileEntity originalREntity;
 
+                //Checks if Player has any established connections already//
                 if(hasPlayerConnection(player))
                 {
+
                     RiftLinkedSide[] sides = this.getPlayerLinkedSides(player);
                     originalREntity = (AbstractRiftTileEntity) world.getTileEntity(sides[0].getPos());
                     sides[1] = new RiftLinkedSide(event.getPos(), event.getFace(), this.getRiftAction(), false);
 
+                    //Checks if Connection is to itself//
                     if(isConnectingToSelf(sides, world))
                     {
                         MessageUtility.sendPlayerMessage(player, MessageUtility.MessageType.CANNOT_LINK_ITSELF);
                     }
                     else if(!originalREntity.canAddLinkedSide(sides[1]))
                     {
+
                         MessageUtility.sendPlayerMessage(player, MessageUtility.MessageType.GUEST_BLOCK_NOT_VALID);
                     }
                     else
                     {
+
                         MessageUtility.sendPlayerMessage(player, MessageUtility.MessageType.VALID_GUEST_LINK);
                         this.applyAttachments(world, player, sides[0], sides[1], true);
                         MessageUtility.sendPlayerMessage(player, MessageUtility.MessageType.CONNECTION_LINKED_COMPLETE);
@@ -91,20 +98,25 @@ public class RiftMechanism extends RiftItem
                 }
                 else
                 {
+
                     RiftLinkedSide side = new RiftLinkedSide(event.getPos(), event.getFace(), this.action, true);
 
                     RiftLinkedSide[] rEntitySides = rEntity.linkedSides;
-                    boolean flag = false;
+                    boolean flag = true;
                     for(RiftLinkedSide connected : rEntitySides)
                     {
+
                         if(connected != null)
                         {
+
                             if(side.getX() == connected.getX() && side.getY() == connected.getY() && side.getZ() == connected.getZ())
                             {
+
                                 if(side.getFace() == connected.getFace())
                                 {
+
                                     MessageUtility.sendPlayerMessage(player, MessageUtility.MessageType.LINKED_SIDE_OCCUPIED);
-                                    flag = true;
+                                    flag = false;
                                     break;
                                 }
                             }
@@ -112,7 +124,7 @@ public class RiftMechanism extends RiftItem
                     }
                     if(flag)
                     {
-                        this.establishPlayerLinkedConnection(new RiftLinkedSide(event.getPos(), event.getFace(), this.action, true), player);
+                        this.establishPlayerLinkedConnection(side, player);
                         MessageUtility.sendPlayerMessage(player, MessageUtility.MessageType.VALID_HOME_LINK);
                     }
                 }
@@ -157,6 +169,13 @@ public class RiftMechanism extends RiftItem
         return null;
     }
 
+    /**
+     * Checks to see if the Player Connection Sides are not connected to the same block.
+     * IE: Rift chest being connected to the same Rift Chest
+     * @param sides
+     * @param world
+     * @return
+     */
     private boolean isConnectingToSelf(RiftLinkedSide[] sides, World world)
     {
         RiftLinkedSide sideA = sides[0];
@@ -199,10 +218,12 @@ public class RiftMechanism extends RiftItem
 
             oEntity.addLinkedSide(sideB);
             cEntity.addLinkedSide(sideA);
+
         }
         else
         {
-            oEntity.addLinkedSide(sideB);
+            oEntity.addLinkedSide(oEntity.generateHashCode(sideB));
+
         }
         return true;
     }

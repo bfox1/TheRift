@@ -4,6 +4,10 @@ package io.github.bfox1.TheRift.riftessence;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+
 /**
  * Created by bfox1 on 11/5/2016.
  */
@@ -14,7 +18,7 @@ public class RiftLinkedSide
     private final EnumRiftAction action;
     private boolean isMasterLink;
 
-
+    private int hashCode;
 
     public RiftLinkedSide(int x, int y, int z, EnumFacing face, EnumRiftAction action, boolean masterLink)
     {
@@ -73,6 +77,21 @@ public class RiftLinkedSide
         return new BlockPos(getX(), getY(), getZ());
     }
 
+    public void setHashCode(int code)
+    {
+        this.hashCode = code;
+    }
+
+    public boolean checkHashCode(int hashCode)
+    {
+        return hashCode == this.hashCode;
+    }
+
+    public void updateTempHash(int hash)
+    {
+
+    }
+
     public enum EnumRiftAction
     {
         INSERT(0),
@@ -86,8 +105,6 @@ public class RiftLinkedSide
         {
             this.id = id;
         }
-
-
 
         public int getId()
         {

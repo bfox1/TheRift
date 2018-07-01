@@ -41,6 +41,8 @@ public class TileEntityDematerializer extends AbstractRiftSidedTileEntity implem
     private int totalItemDTime; //matched with DTotalBurnTime
     private int itemCookTime; //The amount the current item is cooking for.
 
+    private boolean itemCooking = false;
+
     private boolean isDemat = false;
 
     private boolean hasValve;
@@ -248,17 +250,14 @@ public class TileEntityDematerializer extends AbstractRiftSidedTileEntity implem
     }
 
     @Override
-    public int getFieldCount() {
+    public int getFieldCount()
+    {
         return 5;
     }
 
     @Override
-    public void clear() {
-       /* for (int i = 0; i < this.slots.size(); ++i)
-        {
-            this.slots.remove(i);//Modifications here.
-        }
-        */
+    public void clear()
+    {
        this.slots.clear();
     }
 
@@ -266,11 +265,13 @@ public class TileEntityDematerializer extends AbstractRiftSidedTileEntity implem
     public void update()
     {
 
+        //Checks if the De-materializer is active and reduces the total burn time//
         if(isDematerializing())
         {
             --this.DTotalBurnTime;
         }
 
+        //If dematerialize time is not defaulted, to readjust//
         if(dTime != 250)
         {
             this.dTime = 250;
@@ -279,44 +280,53 @@ public class TileEntityDematerializer extends AbstractRiftSidedTileEntity implem
         if(!world.isRemote)
         {
             onValveChange();
-        if(isDematerializing() || !this.slots.get(1).isEmpty() && !this.slots.get(0).isEmpty()) //1.12.1 changes here.
-        {
-            if(!isDematerializing() && canDematerialize() && !this.essence.isReachedMax())
+            if(isDematerializing() || !this.slots.get(1).isEmpty() && !this.slots.get(0).isEmpty()) //1.12.1 changes here.
             {
-                this.DTotalBurnTime = 500; //Sets the Ticks for the EnderPearl to burn for.
-
-                if(isDematerializing())
+                if(!isDematerializing() && canDematerialize() && !this.essence.isReachedMax())
                 {
-                    if(!this.slots.get(0).isEmpty())
-                    {
-                        this.slots.get(0).setCount( (this.slots.get(0).getCount()-1));
+                     this.DTotalBurnTime = 500; //Sets the Ticks for the EnderPearl to burn for.
 
-                        if(this.slots.get(0).getCount() == 0)
+                    if(isDematerializing())
+                    {
+                        if(!this.slots.get(0).isEmpty())
                         {
-                            this.slots.set(0, ItemStack.EMPTY);
+                            this.slots.get(0).setCount( (this.slots.get(0).getCount()-1));
+
+                            if(itemCookTime == 0)
+                            {
+                                this.slots.get(1).setCount(this.slots.get(1).getCount() - 1);
+                                this.itemCooking = true;
+                            }
+
+
+                            if(this.slots.get(0).getCount() == 0)
+                            {
+                                this.slots.set(0, ItemStack.EMPTY);
+                             }
                         }
                     }
-                }
-            }
+                 }
 
-            if(this.isDematerializing() && this.canDematerialize()&& !this.essence.isReachedMax())
-            {
-                ++this.itemCookTime;
-                this.essence.addEssence(1);
-                if (this.itemCookTime == this.dTime)
+                if(this.isDematerializing() && this.canDematerialize()&& !this.essence.isReachedMax())
                 {
-                    this.itemCookTime = 0;
-                    this.dTime = 250;
-                    this.dematerializeItem();
-                    this.markDirty();
-                }
-            }
-            else
-            {
-                this.itemCookTime = 0;
-            }
+                    ++this.itemCookTime;
+                    this.essence.addEssence(1);
 
-        }
+                    if (this.itemCookTime == this.dTime)
+                    {
+                        this.itemCookTime = 0;
+                        this.dTime = 250;
+                        this.dematerializeItem();
+
+                        this.markDirty();
+                    }
+                }
+                else
+                {
+                this.itemCookTime = 0;
+                }
+
+            }
 
         }
     }
@@ -326,6 +336,10 @@ public class TileEntityDematerializer extends AbstractRiftSidedTileEntity implem
         this.essence.setContainmentValve(((ContainmentValve)this.slots.get(3).getItem()).getContainmentValve());
     }
 
+    /**
+     * Method checks to see if the Dematerializer is dematerializing by checking if its total burn time is greater than 0.
+     * @return
+     */
     private boolean isDematerializing()
     {
         return this.DTotalBurnTime > 0;
@@ -410,7 +424,8 @@ public class TileEntityDematerializer extends AbstractRiftSidedTileEntity implem
 
 
     private boolean canDematerialize() {
-        if (this.slots.get(1).isEmpty()) {
+        if (this.slots.get(1).isEmpty() && this.itemCooking == false)
+        {
             return false;
         }
 
