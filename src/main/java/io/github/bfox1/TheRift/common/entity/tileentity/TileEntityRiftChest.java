@@ -1,12 +1,9 @@
 package io.github.bfox1.TheRift.common.entity.tileentity;
 
 import io.github.bfox1.TheRift.common.blocks.RiftChest;
-import io.github.bfox1.TheRift.common.entity.TransportEntity;
 import io.github.bfox1.TheRift.riftessence.RiftLinkedSide;
 import io.github.bfox1.TheRift.server.container.ContainerTestBlock;
-import io.github.bfox1.TheRift.common.proxy.CommonProxy;
 import io.netty.util.internal.ThreadLocalRandom;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -14,10 +11,8 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextComponentString;
 
 import java.util.HashMap;
 

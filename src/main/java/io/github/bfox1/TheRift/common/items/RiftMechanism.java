@@ -1,15 +1,13 @@
 package io.github.bfox1.TheRift.common.items;
 
-import io.github.bfox1.TheRift.common.proxy.CommonProxy;
+import io.github.bfox1.TheRift.common.proxy.ServerProxy;
 import io.github.bfox1.TheRift.common.util.MessageUtility;
 import io.github.bfox1.TheRift.riftessence.RiftLinkedSide;
 import io.github.bfox1.TheRift.common.entity.tileentity.AbstractRiftTileEntity;
-import jdk.nashorn.internal.runtime.arrays.ArrayLikeIterator;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
@@ -47,7 +45,7 @@ public class RiftMechanism extends RiftItem
         }
         else if(player.isSneaking())
         {
-            CommonProxy.riftLinkedConnection.remove(player.getUniqueID());
+            ServerProxy.riftLinkedConnection.remove(player.getUniqueID());
         }
     }
 
@@ -146,14 +144,14 @@ public class RiftMechanism extends RiftItem
 
     private boolean hasPlayerConnection(EntityPlayer player)
     {
-        return CommonProxy.riftLinkedConnection.containsKey(player.getUniqueID());
+        return ServerProxy.riftLinkedConnection.containsKey(player.getUniqueID());
     }
 
     private RiftLinkedSide[] getPlayerLinkedSides(EntityPlayer player)
     {
         if(hasPlayerConnection(player))
         {
-            return CommonProxy.riftLinkedConnection.get(player.getUniqueID());
+            return ServerProxy.riftLinkedConnection.get(player.getUniqueID());
         }
 
         return null;
@@ -179,13 +177,13 @@ public class RiftMechanism extends RiftItem
 
     private void establishPlayerLinkedConnection(RiftLinkedSide side, EntityPlayer player)
     {
-        CommonProxy.riftLinkedConnection.put(player.getUniqueID(), new RiftLinkedSide[]{side, null});
+        ServerProxy.riftLinkedConnection.put(player.getUniqueID(), new RiftLinkedSide[]{side, null});
     }
 
 
     private void clearPlayerLinkedConnection(EntityPlayer player)
     {
-        CommonProxy.riftLinkedConnection.remove(player.getUniqueID());
+        ServerProxy.riftLinkedConnection.remove(player.getUniqueID());
     }
 
 

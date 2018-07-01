@@ -29,40 +29,106 @@ import java.io.File;
  * Deuteronomy 8:18
  * 1 Peter 4:10
  */
-public class ClientProxy extends CommonProxy
+public class ClientProxy implements RiftProxy
 {
     public static Settings settings;
     public static RiftSkinManager skinManager;
 
+	@Override
+	public void initClientConfig(File file)
+	{
 
-    @Override
-    public void preInit(FMLPreInitializationEvent event)
+	}
+
+	@Override
+	public void registerTileEntities()
+	{
+
+	}
+
+	@Override
+	public void initRenderingAndTexture()
+	{
+
+	}
+
+	@Override
+	public void registerEventHandlers()
+	{
+
+	}
+
+	@Override
+	public void registerKeyBindings()
+	{
+
+	}
+
+	@Override
+	public void registerEntityLiving()
+	{
+
+	}
+
+	@Override
+	public void registerGlobalEntity()
+	{
+
+	}
+
+	@Override
+	public void registerDimension()
+	{
+
+	}
+
+	@Override
+	public void addChestLoot()
+	{
+
+	}
+
+	@Override
+	public void registerRenderers()
+	{
+
+	}
+
+	public void preInit(FMLPreInitializationEvent event)
     {
-        super.preInit(event);
         settings = new Settings(event);
-        BlockInit.registerRender();
-        ItemInit.registerRend();
+        //BlockInit.registerRender();
+        //ItemInit.registerRend();
         RiftRenderFactory.registerRenderEntityFactory();
         skinManager = new RiftSkinManager(Minecraft.getMinecraft().getTextureManager(), new File("parent"), Minecraft.getMinecraft().getSessionService());
 
 
     }
 
-    @Override
     public void init(FMLInitializationEvent event)
     {
-        super.init(event);
         //blockRenderRegister(BlockInit.aincradCobbleVariation);
 
     }
-    
-    @Override
+
     public void postInit(FMLPostInitializationEvent event)
     {
-    	super.postInit(event);
+
     }
 
-    /**
+	@Override
+	public void registerItems(RegistryEvent.Register<Item> event)
+	{
+
+	}
+
+	@Override
+	public void registerBlocks(RegistryEvent.Register<Block> event)
+	{
+
+	}
+
+	/**
      * Method is used to not only register but render the block and itemBlock.
      * @param block
      */

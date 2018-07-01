@@ -2,60 +2,29 @@ package io.github.bfox1.TheRift.common.event;
 
 
 
-import com.mojang.authlib.minecraft.MinecraftProfileTexture;
-import io.github.bfox1.TheRift.common.TheRift;
 import io.github.bfox1.TheRift.common.entity.mobs.EntityRiftCreeper;
-import io.github.bfox1.TheRift.common.entity.mobs.EntityRiftSpecialPlayer;
 import io.github.bfox1.TheRift.common.entity.tileentity.AbstractRiftTileEntity;
-import io.github.bfox1.TheRift.common.entity.tileentity.TileEntityRiftChest;
 import io.github.bfox1.TheRift.common.items.DebugItem;
-import io.github.bfox1.TheRift.common.items.ItemRiftFluxCapacitor;
 import io.github.bfox1.TheRift.common.items.RiftMechanism;
 import io.github.bfox1.TheRift.common.items.essencecontainer.IRiftItemEssenceContainer;
 import io.github.bfox1.TheRift.common.items.essencecontainer.ItemRiftEssenceContainer;
 import io.github.bfox1.TheRift.common.items.swords.ItemSwordRiftBlade;
-import io.github.bfox1.TheRift.common.proxy.ClientProxy;
-import io.github.bfox1.TheRift.common.proxy.CommonProxy;
-import io.github.bfox1.TheRift.common.proxy.ServerProxy;
-import io.github.bfox1.TheRift.common.util.MessageUtility;
 import io.github.bfox1.TheRift.common.world.RiftCreeperExplosion;
-import io.github.bfox1.TheRift.init.ItemInit;
 import io.github.bfox1.TheRift.riftessence.RiftEssenceMobMap;
 import io.github.bfox1.TheRift.riftessence.RiftLinkedSide;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockAir;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.network.NetworkPlayerInfo;
-import net.minecraft.client.resources.SkinManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.text.TextComponentString;
-import net.minecraft.world.World;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.event.world.ExplosionEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
-import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerRespawnEvent;
-import net.minecraftforge.fml.common.network.NetworkEventFiringHandler;
-import scala.tools.nsc.transform.SpecializeTypes;
 
 /**
  * Created by bfox1 on 4/16/2016.

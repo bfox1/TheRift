@@ -24,6 +24,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
+@Mod.EventBusSubscriber(modid = Reference.MODID)
 public class ItemInit
 {
 
@@ -51,7 +52,7 @@ public class ItemInit
         loadValves();
     }
 
-
+    @SubscribeEvent
     public static void init(RegistryEvent.Register<Item> event)
     {
         for(IRiftItem item : RIFTITEM.values())

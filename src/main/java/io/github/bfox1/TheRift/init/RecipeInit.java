@@ -1,10 +1,13 @@
 package io.github.bfox1.TheRift.init;
 
+import io.github.bfox1.TheRift.common.util.Reference;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.datafix.fixes.ItemIntIDToString;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 /**

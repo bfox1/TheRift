@@ -7,13 +7,17 @@ import io.github.bfox1.TheRift.common.util.Settings;
 import io.github.bfox1.TheRift.init.BlockInit;
 import io.github.bfox1.TheRift.init.ItemInit;
 import io.github.bfox1.TheRift.riftessence.RiftLinkedSide;
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -22,35 +26,95 @@ import java.util.UUID;
  * Deuteronomy 8:18
  * 1 Peter 4:10
  */
-public class ServerProxy extends CommonProxy
+public class ServerProxy implements RiftProxy
 {
+    public static HashMap<UUID, RiftLinkedSide[]> riftLinkedConnection = new HashMap<>();
 
-
-    @Override
     public void preInit(FMLPreInitializationEvent event)
     {
-        super.preInit(event);
+
     }
 
-    @Override
     public void init(FMLInitializationEvent event)
     {
-        super.init(event);
         //blockRenderRegister(BlockInit.aincradCobbleVariation);
     }
 
-    @Override
     public void postInit(FMLPostInitializationEvent event)
     {
-        super.postInit(event);
        // registerEventHandlers();
     }
 
     @Override
-    public void registerEventHandlers()
+    public void registerItems(RegistryEvent.Register<Item> event)
     {
-        System.out.println("IM LOADING");
-        super.registerEventHandlers();
-        MinecraftForge.EVENT_BUS.register(new ServerEventHandler());
+
     }
+
+    @Override
+    public void registerBlocks(RegistryEvent.Register<Block> event)
+    {
+
+    }
+
+    @Override
+    public void initClientConfig(File file)
+    {
+
+    }
+
+    @Override
+    public void registerTileEntities()
+    {
+
+    }
+
+    @Override
+    public void initRenderingAndTexture()
+    {
+
+    }
+
+    public void registerEventHandlers()
+	{
+		System.out.println("IM LOADING");
+		MinecraftForge.EVENT_BUS.register(new ServerEventHandler());
+	}
+
+    @Override
+    public void registerKeyBindings()
+    {
+
+    }
+
+    @Override
+    public void registerEntityLiving()
+    {
+
+    }
+
+    @Override
+    public void registerGlobalEntity()
+    {
+
+    }
+
+    @Override
+    public void registerDimension()
+    {
+
+    }
+
+    @Override
+    public void addChestLoot()
+    {
+
+    }
+
+    @Override
+    public void registerRenderers()
+    {
+
+    }
+
 }

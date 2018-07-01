@@ -1,5 +1,6 @@
 package io.github.bfox1.TheRift.init;
 
+import com.google.common.base.Preconditions;
 import io.github.bfox1.TheRift.client.creativetabs.RiftTabManager;
 import io.github.bfox1.TheRift.common.TheRift;
 import io.github.bfox1.TheRift.common.blocks.*;
@@ -11,22 +12,21 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+
+import java.util.*;
 
 /**
  * Created by bfox1 on 4/3/2016.
  * Deuteronomy 8:18
  * 1 Peter 4:10
  */
+@Mod.EventBusSubscriber(modid = Reference.MODID)
 public class BlockInit
 {
 
@@ -43,16 +43,18 @@ public class BlockInit
         RiftBlocks.put("processor", new EssenceProcessor(Material.IRON).setBlockRegisterName("processor"));
     }
 
-
-
-    public static void init(RegistryEvent.Register<Block> event)
+    @SubscribeEvent
+    public static void registerBlocks(RegistryEvent.Register<Block> event)
     {
-
-
-        for(Block block : RiftBlocks.values())
+        for(String blockName : RiftBlocks.keySet())
         {
-
-            block.setUnlocalizedName(block.getRegistryName().toString());
+        	final Block block = RiftBlocks.get(blockName);
+			//block.setRegistryName(Reference.MODID, blockName);
+			System.out.println(block.getRegistryName());
+			final ResourceLocation registryName = Objects.requireNonNull(block.getRegistryName());
+            block.setUnlocalizedName(registryName.toString());
+            System.out.println(block.getUnlocalizedName());
+            System.out.println(block.getLocalizedName());
             event.getRegistry().register(block);
             //items.add(block);
 
@@ -62,24 +64,25 @@ public class BlockInit
             //GameRegistry.register(item);
            // ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
         }
-
-
-
     }
 
-    public static void initItemBlock(RegistryEvent.Register<Item> event)
+    @SubscribeEvent
+    public static void registerItemBlocks(RegistryEvent.Register<Item> event)
     {
         for(Block block : RiftBlocks.values())
         {
             System.out.println(block.getRegistryName().toString());
 
             ItemBlock item = new ItemBlock(block);
-            item.setRegistryName(block.getRegistryName().toString().substring(5));
-            item.setUnlocalizedName(item.getRegistryName().toString());
-            event.getRegistry().register(item);
+            ResourceLocation registryName = Preconditions.checkNotNull(block.getRegistryName(), "Block %s has null registry name", block);
+
+            //item.setUnlocalizedName(Objects.requireNonNull(item.getRegistryName()).toString());
+
+            System.out.println(item.getUnlocalizedName());
+
+            event.getRegistry().register(item.setRegistryName(registryName));
             ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(block.getRegistryName().toString()));
             //ItemInit.items.add(item);
-
         }
         RiftBlocks.forEach((k,v) -> v.setCreativeTab(RiftTabManager.SaoBlocks) );
     }

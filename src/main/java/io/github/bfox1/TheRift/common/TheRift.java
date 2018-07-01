@@ -1,23 +1,19 @@
 package io.github.bfox1.TheRift.common;
 
 
+import io.github.bfox1.TheRift.client.gui.GuiHandler;
+import io.github.bfox1.TheRift.common.event.ForgeEventHandler;
 import io.github.bfox1.TheRift.common.proxy.RiftProxy;
 import io.github.bfox1.TheRift.common.util.LogHelper;
 import io.github.bfox1.TheRift.common.util.Reference;
-import io.github.bfox1.TheRift.init.BlockInit;
-import io.github.bfox1.TheRift.init.ItemInit;
-import net.minecraft.block.Block;
-import net.minecraft.command.ServerCommandManager;
-import net.minecraft.item.Item;
-import net.minecraft.server.MinecraftServer;
-import net.minecraftforge.event.RegistryEvent;
+import io.github.bfox1.TheRift.init.*;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartedEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 
@@ -48,6 +44,9 @@ public class TheRift
     {
         LogHelper.logger = event.getModLog();
 
+        MaterialEnumInit.registerToolMaterial();
+        TileEntityInit.registerTileEntities();
+        EntityInit.registerEntities();
 
         LogHelper.info("Finally Entering the Modding Scene! ~bfox1");
         LogHelper.info("Lets begin the Pre-initialization of The Rift!");
@@ -60,7 +59,7 @@ public class TheRift
     public void init(FMLInitializationEvent event)
     {
         LogHelper.info("Initialization Beginning.");
-        proxy.init(event);
+        NetworkRegistry.INSTANCE.registerGuiHandler(Reference.MODID, new GuiHandler());
         LogHelper.info("Initialization Complete!");
        // proxy.registerEventHandlers();
     }
@@ -68,8 +67,8 @@ public class TheRift
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event)
     {
+        MinecraftForge.EVENT_BUS.register(new ForgeEventHandler());
         LogHelper.info("Post-Initialization Beginning");
-    	proxy.postInit(event);
         LogHelper.info("Post-Initialization Complete");
 
         //System.out.println(ClassReference.getItem(Reference.MODID, "Elucidator"));
