@@ -37,12 +37,10 @@ public class ServerProxy implements RiftProxy
 
     public void init(FMLInitializationEvent event)
     {
-        //blockRenderRegister(BlockInit.aincradCobbleVariation);
     }
 
     public void postInit(FMLPostInitializationEvent event)
     {
-       // registerEventHandlers();
     }
 
     @Override
@@ -77,7 +75,6 @@ public class ServerProxy implements RiftProxy
 
     public void registerEventHandlers()
 	{
-		System.out.println("IM LOADING");
 		MinecraftForge.EVENT_BUS.register(new ServerEventHandler());
 	}
 
@@ -116,5 +113,4 @@ public class ServerProxy implements RiftProxy
     {
 
     }
-
 }

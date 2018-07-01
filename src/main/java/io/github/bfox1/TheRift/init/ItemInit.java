@@ -59,22 +59,13 @@ public class ItemInit
 
             ((Item) item).setCreativeTab(RiftTabManager.RIFT_ITEMS_TAB);
         }
-
-        //RIFTITEM.forEach((k,v) -> ((Item)v).setCreativeTab(RiftTabManager.RIFT_ITEMS_TAB) );
-    }
-
-    @Deprecated
-    public static void registerRend()
-    {
-        //RIFTITEM.forEach((k,v) -> ModelLoader.setCustomModelResourceLocation(((Item)v), 0, new ModelResourceLocation(((Item)v).getRegistryName().toString())) );
-
     }
 
 	public static String getUnlocalizedItemName(int id)
-	{
-		Item item = Item.getItemById(id);
-		return item.getUnlocalizedName();
-	}
+    {
+        Item item = Item.getItemById(id);
+        return item.getUnlocalizedName();
+    }
 
     private static void setRegItem(String name)
     {

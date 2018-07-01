@@ -11,10 +11,7 @@ import java.util.HashMap;
 public class MaterialEnumInit
 {
     public static final HashMap<String, Item.ToolMaterial> riftToolMaterial = new HashMap<String, Item.ToolMaterial>();
-
     public static final HashMap<String, Item.ToolMaterial> riftArmorMaterial = new HashMap<>();
-
-
 
     public static void registerToolMaterial()
     {
@@ -23,13 +20,11 @@ public class MaterialEnumInit
         buildToolMaterial(RiftMaterialEnum.UNCHARTED, 5, 8000, 12.0F, 7.5F, 17);
     }
 
-
     private static void buildToolMaterial(RiftMaterialEnum mat, int harvestLevel, int maxUses, float eff, float dmg, int enchant)
     {
         if(!riftToolMaterial.containsKey(mat.getName()))
         {
             Item.ToolMaterial material = EnumHelper.addToolMaterial(mat.getName(), harvestLevel, maxUses, eff, dmg, enchant);
-
             riftToolMaterial.put(mat.getName(), material);
         }
         else
@@ -43,7 +38,6 @@ public class MaterialEnumInit
         return riftToolMaterial.get(materialEnum.getName());
     }
 
-
     public enum RiftMaterialEnum
     {
         RIFT_CHUNK("rift_chunk"),
@@ -51,7 +45,6 @@ public class MaterialEnumInit
         UNCHARTED("uncharted");
 
         private final String name;
-
 
         RiftMaterialEnum(String name)
         {

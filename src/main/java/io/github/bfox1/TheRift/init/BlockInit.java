@@ -26,12 +26,10 @@ import java.util.*;
 @Mod.EventBusSubscriber(modid = Reference.MODID)
 public class BlockInit
 {
-
-    private static  HashMap<String, Block> RiftBlocks = new HashMap<>();
+    private static HashMap<String, Block> RiftBlocks = new HashMap<>();
 
     static
     {
-
         RiftBlocks.put("riftchest", new RiftChest().setBlockRegisterName("riftchest"));
         RiftBlocks.put("dematerializer", new Dematerializer().setBlockRegisterName("dematerializer"));
         RiftBlocks.put("riftvessel", new RiftEssenceVessel().setBlockRegisterName("riftvessel"));
@@ -60,7 +58,7 @@ public class BlockInit
 
     /**
      * Subscribed event Method which registers ItemBlocks.
-     * @param event
+     * @param event Item register event
      */
     @SubscribeEvent
     public static void registerItemBlocks(RegistryEvent.Register<Item> event)
@@ -77,7 +75,6 @@ public class BlockInit
             block.setCreativeTab(RiftTabManager.RIFT_BLOCKS_TAB);
         }
         TileEntityInit.registerTileEntities();
-       // RiftBlocks.forEach((k,v) -> v.setCreativeTab(RiftTabManager.RIFT_BLOCKS_TAB) );
     }
 
     /**
@@ -93,13 +90,13 @@ public class BlockInit
 
     /**
      * Static Getter method for retriving Blocks from the HashMap.
-     * @param name
-     * @return
+     * Must be used with null check.
+     * @param name input name of the Block being checked to see if it has been registered correctly.
+     * @return true if the name is in the RiftBlocks HashMap, or null if it has not been added.
      */
     public static Block getRegItem(String name)
     {
-        //TODO - Should check if block exists.
-        return RiftBlocks.get(name);
+	    return RiftBlocks.getOrDefault(name, null); //this is wacky, but code suggestion works.
     }
 
     public static HashMap<String, Block> getRiftBlocks()

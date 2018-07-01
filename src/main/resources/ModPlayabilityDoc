@@ -1,23 +1,24 @@
 ###############THE RIFT###############
-This is a Documentation on how to use the Items and blocks found in The Rift!
-The Documentation will include items and blocks that currently have doable features and
+This is a Documentation on how to use the Items and Blocks found in The Rift!
+The Documentation will include items and blocks that currently have functional features and
 with soon contain information of future blocks and items with other functions
 ITEMS:
-    RiftMechanism - Is to connect RiftTileEntities with other TileEntities that interfaced with IInventory.
-        To Cycle through Modes on the Rift Mech, you right click without facing a block(Air Block).
+    RiftMechanism - This is used to connect RiftTileEntities with other TileEntities that are interfaced using IInventory.
+        To Cycle through Modes on the Rift Mechanism right click without looking at any block.
         Modes Include:
-            - Clear: Currently doesnt offer a function, expected to clear current Rift Links tied to the Player and the rift mechanism.
-            - Gui: Currently doesnt offer a function, expected to open the gui of some tile entities which offer special functionality.
+            - Clear: Currently this doesn't offer a function, but it is expected to clear current Rift Links tied to the Player and the rift mechanism.
+            - Gui: Currently this doesn't offer a function, but it is expected to open the GUI of some tile entities which offer special functionality.
             - Insert: This sets the Side of the RiftTileEntity the ability to bring Items in from another TileEntity.
             - Eject: This sets the Side of a TileEntity the ability to eject items from the inventory(When used on a
                 non-riftTileEntity, it will save the Inventory to the Side and save it to the Rift inventory.
         Examples:
 
         To Connect a Chest to a Rift Chest You will Change Rift Mechanism to Insert > Punch the Rift Chest Side to create Home Link
-        > Change Rift Mech to Eject > Punch Chest Side to create Guest Link and it Establishes a COnnection.
+        > Change Rift Mechanism to Eject > Punch Chest Side to create Guest Link and it Establishes a Connection.
 
-    Rift Chest - Special Chest that is used to transfer Items through the Rift Link between space and Time. Using a
-        Rift mechanism, a special tool to establish the links. By default and currently the only way to get items out of
-        the rift chest is to place an adjacent inventory next to the rift chest to pull items out.
+    Rift Chest - Special Chest that is used to transfer Items through the Rift Link between space and time. Using a
+        Rift mechanism, a special tool to establish the links, you can link the Rift Chest to various inventories.
+        By default and currently the only way to get items out of the rift chest is to place an adjacent inventory
+        next to the rift chest to pull items out.
 
     Dematerializer - TO BE DOCUMENTED.

@@ -33,9 +33,6 @@ public class RiftMechanism extends RiftItem
         return action;
     }
 
-
-
-
     public void onLeftClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand)
     {
         if(EnumHand.MAIN_HAND == hand && !player.isSneaking())
@@ -53,7 +50,6 @@ public class RiftMechanism extends RiftItem
     {
         World world = event.getWorld();
         EntityPlayer player = event.getEntityPlayer();
-
 
         TileEntity entity = world.getTileEntity(event.getPos());
 
@@ -199,14 +195,10 @@ public class RiftMechanism extends RiftItem
         ServerProxy.riftLinkedConnection.put(player.getUniqueID(), new RiftLinkedSide[]{side, null});
     }
 
-
     private void clearPlayerLinkedConnection(EntityPlayer player)
     {
         ServerProxy.riftLinkedConnection.remove(player.getUniqueID());
     }
-
-
-
 
     public boolean applyAttachments(World world, EntityPlayer player, RiftLinkedSide sideA, RiftLinkedSide sideB, boolean allREntity)
     {
@@ -273,7 +265,4 @@ public class RiftMechanism extends RiftItem
             }
         }
     }
-
-
-
 }

@@ -97,17 +97,12 @@ public class ClientProxy implements RiftProxy
 	public void preInit(FMLPreInitializationEvent event)
     {
         settings = new Settings(event);
-        //BlockInit.registerRender();
-        //ItemInit.registerRend();
         RiftRenderFactory.registerRenderEntityFactory();
         skinManager = new RiftSkinManager(Minecraft.getMinecraft().getTextureManager(), new File("parent"), Minecraft.getMinecraft().getSessionService());
-
-
     }
 
     public void init(FMLInitializationEvent event)
     {
-        //blockRenderRegister(BlockInit.aincradCobbleVariation);
 
     }
 
@@ -127,23 +122,4 @@ public class ClientProxy implements RiftProxy
 	{
 
 	}
-
-	/**
-     * Method is used to not only register but render the block and itemBlock.
-     * @param block
-     */
-    public void blockRenderRegister(Block block)
-    {
-
-        //registerBlockMetaItem(block, "sao:AincradCobble_block_one","sao:AincradCobble_block_two","sao:AincradCobble_block_three","sao:AincradCobble_block_four");
-        //RegisterUtility.registerBlockMetaItem(block, ((SaoBlockVariationAbstract)block).getSubtypeArray());
-    }
-
-    /**
-     * Registers a single block.
-     * @param block The Block to register and render.
-     * @param meta The id of the MEta. Should be left as 0, if anything else, use ClientProxy#registerBlockMetaItem
-     * @param blockName The Blocks name.
-     */
-
 }
