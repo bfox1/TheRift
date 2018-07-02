@@ -1,6 +1,7 @@
 package io.github.bfox1.TheRift.riftessence;
 
 
+import io.github.bfox1.TheRift.common.entity.tileentity.AbstractRiftTileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 
@@ -82,15 +83,15 @@ public class RiftLinkedSide
         this.hashCode = code;
     }
 
-    public boolean checkHashCode(int hashCode)
+    public boolean checkHashCode(int hashCode, AbstractRiftTileEntity entity)
     {
+        if(this.hashCode == 0)
+        {
+            this.hashCode = entity.generateHashCode(this).hashCode;
+        }
         return hashCode == this.hashCode;
     }
 
-    public void updateTempHash(int hash)
-    {
-
-    }
 
     public enum EnumRiftAction
     {

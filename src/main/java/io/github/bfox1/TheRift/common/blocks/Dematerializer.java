@@ -45,10 +45,8 @@ public class Dematerializer extends AbstractRiftBlock
 
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
-        System.out.println("Running");
         if (worldIn.isRemote)
         {
-            System.out.println("check :) ");
             return true;
         }
         else
@@ -58,9 +56,6 @@ public class Dematerializer extends AbstractRiftBlock
             if (tileentity instanceof TileEntityDematerializer)
             {
                 playerIn.openGui(TheRift.instance, DEMAT_GUI_INDEX, worldIn, pos.getX(), pos.getY(), pos.getZ());
-                System.out.println("Testing? Did i run");
-                //playerIn.displayGUIChest((TileEntityDematerializer)tileentity);
-                //playerIn.addStat(StatList.FURNACE_INTERACTION);
             }
 
             return true;

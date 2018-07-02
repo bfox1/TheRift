@@ -187,7 +187,7 @@ public class TileEntityEssenceProcessor extends AbstractRiftSidedTileEntity impl
 
     @Override
     public boolean isItemValidForSlot(int index, ItemStack stack) {
-        return false;
+        return true;
     }
 
     @Override
@@ -390,10 +390,10 @@ public class TileEntityEssenceProcessor extends AbstractRiftSidedTileEntity impl
             }
         }
 
-        if(!world.isRemote)
         if(!slots.get(1).isEmpty())
-        if(isProcessing && !FurnaceRecipes.instance().getSmeltingResult(slots.get(1)).isEmpty() && canProcess())
+        if(isProcessing && FurnaceRecipes.instance().getSmeltingResult(slots.get(1)).isEmpty() && canProcess())
         {
+            System.out.println("FIRST-RAN");
             ItemStack stack = FurnaceRecipes.instance().getSmeltingResult(slots.get(1));
 
             if(this.cookTime == 0)
@@ -417,8 +417,9 @@ public class TileEntityEssenceProcessor extends AbstractRiftSidedTileEntity impl
                 }
             }
         }
-        else if(!isProcessing && !FurnaceRecipes.instance().getSmeltingResult(slots.get(1)).isEmpty() && canProcess())
+        else if(!isProcessing && FurnaceRecipes.instance().getSmeltingResult(slots.get(1)).isEmpty() && canProcess())
         {
+            System.out.println("RAN-SECOND");
             this.cookTime = 150;
         }
     }

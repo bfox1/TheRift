@@ -14,7 +14,6 @@ import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.common.util.Constants;
 
 import javax.annotation.Nullable;
 
@@ -29,8 +28,8 @@ public class TileEntityRiftVessel extends AbstractRiftIventoryTileEntity impleme
 
     public TileEntityRiftVessel()
     {
-        //this.essence = new JoryuEssence();
-        //this.essence.setMaxRe(50000);
+        this.essence = new JoryuEssence();
+        this.essence.setMaxRe(50000);
     }
 
     @Override
@@ -175,11 +174,10 @@ public class TileEntityRiftVessel extends AbstractRiftIventoryTileEntity impleme
         tick++;
         if(!this.world.isRemote)
         {
-            //System.out.println(this.getEssence().getComparableEssence() + " : " + this.getEssence().getComparableMax());
             onValveChange();
-            extractEssence();
+            processEssence();
         }
-        if(tick == 80)
+        if(tick == 40)
         {
             this.markDirty();
             this.tick = 0;
@@ -282,7 +280,7 @@ public class TileEntityRiftVessel extends AbstractRiftIventoryTileEntity impleme
         }
     }
 
-    private void extractEssence()
+    private void processEssence()
     {
         int i = 0;
         for(RiftLinkedSide side : linkedSides)

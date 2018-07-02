@@ -198,7 +198,6 @@ public class TileEntityDematerializer extends AbstractRiftSidedTileEntity implem
     @Override
     public void openInventory(EntityPlayer player)
     {
-        System.out.println("Am I working? ");
     }
 
     @Override
