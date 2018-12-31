@@ -1,7 +1,6 @@
 package io.github.bfox1.TheRift.common.entity;
 
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 

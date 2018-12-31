@@ -1,7 +1,6 @@
 package io.github.bfox1.TheRift.common.items.tools;
 
 import com.google.common.collect.Sets;
-import com.sun.scenario.effect.Effect;
 import io.github.bfox1.TheRift.init.BlockInit;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;

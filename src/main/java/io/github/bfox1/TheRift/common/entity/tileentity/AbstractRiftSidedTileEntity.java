@@ -1,8 +1,6 @@
 package io.github.bfox1.TheRift.common.entity.tileentity;
 
-import io.github.bfox1.TheRift.riftessence.RiftLinkedSide;
 import net.minecraft.inventory.ISidedInventory;
-import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -11,8 +9,6 @@ import net.minecraft.util.ITickable;
 import net.minecraft.util.NonNullList;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by bfox1 on 11/10/2016.
@@ -67,9 +63,6 @@ public abstract class AbstractRiftSidedTileEntity extends AbstractRiftTileEntity
         {
             NBTTagCompound item = list.getCompoundTagAt(i);
             byte b0 = item.getByte("Slot");
-
-
-
 
             if(b0 >= 0 && b0 < this.slots.size())
             {

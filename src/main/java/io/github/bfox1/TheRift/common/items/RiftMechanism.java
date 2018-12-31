@@ -1,9 +1,9 @@
 package io.github.bfox1.TheRift.common.items;
 
+import io.github.bfox1.TheRift.common.entity.tileentity.AbstractRiftTileEntity;
 import io.github.bfox1.TheRift.common.proxy.ServerProxy;
 import io.github.bfox1.TheRift.common.util.MessageUtility;
 import io.github.bfox1.TheRift.riftessence.RiftLinkedSide;
-import io.github.bfox1.TheRift.common.entity.tileentity.AbstractRiftTileEntity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;

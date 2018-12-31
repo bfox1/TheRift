@@ -3,7 +3,6 @@ package io.github.bfox1.TheRift.common.entity.tileentity;
 import io.github.bfox1.TheRift.api.riftessence.IRiftEssence;
 import io.github.bfox1.TheRift.api.riftessence.essencecontainer.IRiftEssenceContainer;
 import io.github.bfox1.TheRift.common.items.ContainmentValve;
-import io.github.bfox1.TheRift.riftessence.RiftLinkedSide;
 import io.github.bfox1.TheRift.riftessence.essence.AbstractRiftEssence;
 import io.github.bfox1.TheRift.riftessence.essence.JoryuEssence;
 import io.github.bfox1.TheRift.riftessence.helper.RiftEssenceHelper;
@@ -65,15 +64,6 @@ public class TileEntityEssenceProcessor extends AbstractRiftSidedTileEntity impl
         {
             RiftEssenceHelper.addRiftEssence(essence, this.essence, increment);
         }
-
-        //    if(essence.getRiftEssence() !=0)
-          //  {
-            //    if(this.getEssence().getRiftEssence() != this.getEssence().getMaxRiftEssence())
-              //  {
-                //    int adding = essence.removeRiftEssence(increment);
-                  //  this.getEssence().addRawEssence(adding);
-           //     }
-         //   }
     }
 
     @Override
@@ -320,26 +310,6 @@ public class TileEntityEssenceProcessor extends AbstractRiftSidedTileEntity impl
         return 0;
     }
 
-    private void performEssenceExtracting()
-    {
-        int i = 0;
-        for(RiftLinkedSide side : linkedSides)
-        {
-
-            if(side != null && side.getAction() == RiftLinkedSide.EnumRiftAction.EJECT)
-            {
-                if(!side.isMasterLink())
-                    handleExtractingEssence(world.getTileEntity(side.getPos()), i);
-            }
-            else if(side != null && side.getAction() == RiftLinkedSide.EnumRiftAction.INSERT)
-            {
-                if(!side.isMasterLink())
-                    handleInsertEssence(world.getTileEntity(side.getPos()), i);
-            }
-            i++;
-        }
-    }
-
     private void handleExtractingEssence(TileEntity entity, int index)
     {
 
@@ -390,10 +360,10 @@ public class TileEntityEssenceProcessor extends AbstractRiftSidedTileEntity impl
             }
         }
 
-        if(!slots.get(1).isEmpty())
-        if(isProcessing && FurnaceRecipes.instance().getSmeltingResult(slots.get(1)).isEmpty() && canProcess())
+
+        if(isProcessing && !FurnaceRecipes.instance().getSmeltingResult(slots.get(1)).isEmpty() && canProcess())
         {
-            System.out.println("FIRST-RAN");
+
             ItemStack stack = FurnaceRecipes.instance().getSmeltingResult(slots.get(1));
 
             if(this.cookTime == 0)
@@ -417,9 +387,9 @@ public class TileEntityEssenceProcessor extends AbstractRiftSidedTileEntity impl
                 }
             }
         }
-        else if(!isProcessing && FurnaceRecipes.instance().getSmeltingResult(slots.get(1)).isEmpty() && canProcess())
+        else if(!isProcessing && !FurnaceRecipes.instance().getSmeltingResult(slots.get(1)).isEmpty() && canProcess())
         {
-            System.out.println("RAN-SECOND");
+
             this.cookTime = 150;
         }
     }
@@ -428,18 +398,27 @@ public class TileEntityEssenceProcessor extends AbstractRiftSidedTileEntity impl
     {
         this.isProcessing = this.cookTime > 0;
     }
+
+    /**
+     * Checks if the processor can Process the Items in its input slot.
+     * Input slot = Slot 1(Uses current Furnace Recipes)
+     * Output Slot = Slot 2
+     * @return
+     */
     private boolean canProcess()
     {
         if(!slots.get(1).isEmpty())
         {
+
             return true;
         }
         else if(this.essence.getRiftEssence() <= 3)
         {
+
             return false;
         }
 
-        return this.slots.get(2).isEmpty() || this.slots.get(2).getCount() != this.getInventoryStackLimit();
+        return this.slots.get(2).isEmpty() || this.slots.get(2).getCount() != this.slots.get(2).getMaxStackSize();
     }
 
     @Override

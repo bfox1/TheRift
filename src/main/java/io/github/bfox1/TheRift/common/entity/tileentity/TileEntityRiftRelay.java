@@ -6,8 +6,6 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
 
-import javax.annotation.Nullable;
-
 /**
  * Created by bfox1 on 12/12/2016.
  */

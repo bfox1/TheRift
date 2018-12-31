@@ -1,7 +1,6 @@
 package io.github.bfox1.TheRift.common.inventory;
 
 import io.github.bfox1.TheRift.api.riftessence.essencecontainer.IRiftEssenceContainer;
-import io.github.bfox1.TheRift.common.items.ContainmentValve;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;

@@ -3,6 +3,7 @@ package io.github.bfox1.TheRift.init;
 
 import io.github.bfox1.TheRift.api.items.IRiftItem;
 import io.github.bfox1.TheRift.client.creativetabs.RiftTabManager;
+import io.github.bfox1.TheRift.common.TheRift;
 import io.github.bfox1.TheRift.common.items.*;
 import io.github.bfox1.TheRift.common.items.swords.ItemSwordRiftBlade;
 import io.github.bfox1.TheRift.common.items.tools.ItemRiftPickaxe;
@@ -11,6 +12,7 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 
 import net.minecraft.item.Item;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -42,6 +44,7 @@ public class ItemInit
 
         setRegItem(new ItemRiftPickaxe(MaterialEnumInit.getToolMaterial(MaterialEnumInit.RiftMaterialEnum.RIFT_CHUNK)), "essence_chunk_pickaxe");
         setRegItem(new DebugItem(), "debug_item");
+        setRegItem(new ItemRiftBag(), "rift_Bag");
 
         loadValves();
     }
@@ -55,7 +58,12 @@ public class ItemInit
 
             event.getRegistry().register(item.getItem());
 
+            System.out.println(item.getItem().getRegistryName());
+            System.out.println(item.getItem().getUnlocalizedName());
+
+            if(!TheRift.flag)
             ModelLoader.setCustomModelResourceLocation(((Item)item), 0, new ModelResourceLocation(((Item)item).getRegistryName().toString()));
+
 
             ((Item) item).setCreativeTab(RiftTabManager.RIFT_ITEMS_TAB);
         }

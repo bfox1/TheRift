@@ -2,7 +2,6 @@ package io.github.bfox1.TheRift.common.blocks;
 
 import io.github.bfox1.TheRift.common.TheRift;
 import io.github.bfox1.TheRift.common.entity.tileentity.TileEntityDematerializer;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -18,8 +17,6 @@ import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-
-import javax.annotation.Nullable;
 
 /**
  * Created by bfox1 on 11/7/2016.

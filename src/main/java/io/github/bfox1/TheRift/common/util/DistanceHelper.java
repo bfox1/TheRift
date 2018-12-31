@@ -1,13 +1,5 @@
 package io.github.bfox1.TheRift.common.util;
 
-import java.util.ArrayList;
-
-import net.minecraft.init.Blocks;
-import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.World;
-import net.minecraft.world.chunk.Chunk;
-import net.minecraft.world.chunk.storage.ExtendedBlockStorage;
-
 public class DistanceHelper {
 	
 	public static Integer distance2D(double xD, double xC, double Dx, double Cx) {

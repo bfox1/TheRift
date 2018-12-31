@@ -1,8 +1,8 @@
 package io.github.bfox1.TheRift.common.entity.tileentity;
 
-import io.github.bfox1.TheRift.riftessence.RiftLinkedSide;
-import io.github.bfox1.TheRift.common.util.LogHelper;
 import io.github.bfox1.TheRift.api.riftessence.IRiftLinkableContainer;
+import io.github.bfox1.TheRift.common.util.LogHelper;
+import io.github.bfox1.TheRift.riftessence.RiftLinkedSide;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.ItemStackHelper;
@@ -16,9 +16,6 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
 
 /**
  * Created by bfox1 on 11/10/2016.
@@ -26,13 +23,12 @@ import java.util.LinkedList;
 public abstract class AbstractRiftTileEntity extends TileEntityLockable implements IRiftLinkableContainer
 {
     public RiftLinkedSide[] linkedSides;
-    //public ItemStack[] slots;
+
     public NonNullList<ItemStack> slots;
 
     public AbstractRiftTileEntity()
     {
         this.linkedSides = new RiftLinkedSide[6];
-        //this.slots = new LinkedList<ItemStack>();
 
         this.init();
     }
@@ -95,8 +91,8 @@ public abstract class AbstractRiftTileEntity extends TileEntityLockable implemen
     //###############Rift Implementations#################//
     //#####################Beginning######################//
 
+
     /**
-     * Used to get the Array of RiftLinkedSide object
      * @return
      */
     public RiftLinkedSide[] getLinkedSides()
@@ -104,10 +100,8 @@ public abstract class AbstractRiftTileEntity extends TileEntityLockable implemen
         return linkedSides;
     }
 
-    /**
-     * Checks to see if This Tile Entity has any connected Rift Links
-     * @return
-     */
+
+
     public boolean hasLinkedTileEntities()
     {
 
@@ -143,11 +137,7 @@ public abstract class AbstractRiftTileEntity extends TileEntityLockable implemen
         return null;
     }
 
-    /**
-     * Removes a linked side from blockpos and enum face.
-     * @param pos
-     * @param face
-     */
+
     @Override
     public void removeLinkedSide(BlockPos pos, EnumFacing face)
     {
@@ -182,21 +172,14 @@ public abstract class AbstractRiftTileEntity extends TileEntityLockable implemen
         }
     }
 
-    /**
-     * Deliberately Clears the tile entity of linked sides
-     */
+
     @Override
     public void clearLinkedSides()
     {
         this.linkedSides = new RiftLinkedSide[this.linkedSides.length];
     }
 
-    /**
-     * Checks if the Linked Side can be added to Tile Entity,
-     * Returns true if possible, no if cannot.
-     * @param eSide
-     * @return
-     */
+
     @Override
     public boolean canAddLinkedSide(RiftLinkedSide eSide)
     {
@@ -222,10 +205,7 @@ public abstract class AbstractRiftTileEntity extends TileEntityLockable implemen
         return doesContainSpot;
     }
 
-    /**
-     * Will add Linked Side to Tile Entity. This Method DOES NOT perform a check
-     * @param side
-     */
+
     @Override
     public void addLinkedSide(RiftLinkedSide side)
     {
@@ -240,6 +220,11 @@ public abstract class AbstractRiftTileEntity extends TileEntityLockable implemen
         }
     }
 
+    /**
+     * Special Generator that will create a Hashcode of a Non-
+     * @param side
+     * @return
+     */
     public RiftLinkedSide generateHashCode(RiftLinkedSide side)
     {
         IInventory inventory = (IInventory)world.getTileEntity(new BlockPos(side.getX(), side.getY(), side.getZ()));
@@ -270,18 +255,7 @@ public abstract class AbstractRiftTileEntity extends TileEntityLockable implemen
         return object.hashCode();
     }
 
-    /**
-     * Extract an Item from a side.
-     * This is an exclusive method for the Rift Chest only and to soon be implemented into other Machines.
-     * @param inventory The Inventory
-     * @param stack The ItemStack we are checking
-     * @param facing The Face of the Inventory
-     * @param slot The Slot in which the Item is located
-     * @param isMasterLink This is a very important boolean, this checks if the Rift Tile Entity is Home or guest.
-     *                     If boolean is false, this method will not fire in the connected TE, HOWEVER, if True, the
-     *                     TE will then fire when called.
-     * @return
-     */
+
     @Override
     public boolean canExtractFromSide(IInventory inventory, ItemStack stack, EnumFacing facing, int slot, boolean isMasterLink)
     {

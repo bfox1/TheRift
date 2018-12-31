@@ -1,7 +1,7 @@
 package io.github.bfox1.TheRift.riftessence.essence;
 
-import io.github.bfox1.TheRift.api.riftessence.IRiftEssence;
 import io.github.bfox1.TheRift.api.containmentvalve.IContainmentValve;
+import io.github.bfox1.TheRift.api.riftessence.IRiftEssence;
 
 /**
  * Created by bfox1 on 11/7/2016.
@@ -48,6 +48,10 @@ public abstract class AbstractRiftEssence implements IRiftEssence
         }
     }
 
+
+    /**
+     * @param valve The Valve being added.
+     */
     @Override
     public final void setContainmentValve(IContainmentValve valve)
     {
@@ -56,6 +60,7 @@ public abstract class AbstractRiftEssence implements IRiftEssence
         this.maxRe = (int) (valve.getValveName().equalsIgnoreCase("barubu_one") ? maxRe*valve.getMultiplier() : (valve.getValveName().equalsIgnoreCase("barubu_two") ? maxRe*valve.getMultiplier() :
                         (valve.getValveName().equalsIgnoreCase("barubu_three") ? maxRe*valve.getMultiplier() : maxRe)));
     }
+
 
     @Override
     public void setEssence(int riftEssence)
@@ -118,7 +123,7 @@ public abstract class AbstractRiftEssence implements IRiftEssence
     }
 
     /**
-     * Translate the ComparableEssence into RiftEssence, this does not include the ContainmentValve multiplier if any.
+     * Translate the ComparableEssence into Rift Essence, this does not include the ContainmentValve multiplier if any.
      * @param comparableEssence
      * @param comparableEssenceMultiplier
      * @return
@@ -189,7 +194,7 @@ public abstract class AbstractRiftEssence implements IRiftEssence
             }
 
             @Override
-            public int addRawEssence(int i) {
+            public int addRiftEssence(int i) {
                 return 0;
             }
         };
@@ -200,7 +205,7 @@ public abstract class AbstractRiftEssence implements IRiftEssence
         return essence;
     }
 
-    public int addRawEssence(int i)
+    public int addRiftEssence(int i)
     {
         if(this.re + i > maxRe)
         {

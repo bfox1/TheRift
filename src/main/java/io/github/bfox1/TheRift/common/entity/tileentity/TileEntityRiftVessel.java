@@ -315,7 +315,7 @@ public class TileEntityRiftVessel extends AbstractRiftIventoryTileEntity impleme
         else
         {
             IRiftEssenceContainer container = (IRiftEssenceContainer) entity;
-
+            System.out.println(this.essence.getRiftEssence() + " extracting");
             container.decreRiftEssence(this.essence, 24);
         }
     }
@@ -330,7 +330,7 @@ public class TileEntityRiftVessel extends AbstractRiftIventoryTileEntity impleme
         else if(entity instanceof IRiftEssenceContainer)
         {
             IRiftEssenceContainer container = (IRiftEssenceContainer) entity;
-
+            System.out.println(this.essence.getRiftEssence() + "Inserting");
             container.addRiftEssence(this.essence, 24);
         }
     }

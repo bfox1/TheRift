@@ -5,10 +5,6 @@ import io.github.bfox1.TheRift.common.entity.tileentity.AbstractRiftTileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-
 /**
  * Created by bfox1 on 11/5/2016.
  */

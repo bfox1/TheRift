@@ -1,9 +1,7 @@
 package io.github.bfox1.TheRift.common.util;
 
 
-import net.minecraftforge.fml.common.FMLLog;
 import org.apache.logging.log4j.Level;
-import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 

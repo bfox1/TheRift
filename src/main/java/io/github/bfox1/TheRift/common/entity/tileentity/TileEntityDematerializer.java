@@ -1,12 +1,12 @@
 package io.github.bfox1.TheRift.common.entity.tileentity;
 
-import io.github.bfox1.TheRift.server.container.ContainerDematerializer;
-import io.github.bfox1.TheRift.common.items.ContainmentValve;
+import io.github.bfox1.TheRift.api.riftessence.IRiftEssence;
 import io.github.bfox1.TheRift.api.riftessence.essencecontainer.IRiftEssenceContainer;
+import io.github.bfox1.TheRift.common.items.ContainmentValve;
 import io.github.bfox1.TheRift.init.ItemInit;
 import io.github.bfox1.TheRift.riftessence.essence.AbstractRiftEssence;
-import io.github.bfox1.TheRift.api.riftessence.IRiftEssence;
 import io.github.bfox1.TheRift.riftessence.essence.JoryuEssence;
+import io.github.bfox1.TheRift.server.container.ContainerDematerializer;
 import io.netty.util.internal.ThreadLocalRandom;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -21,7 +21,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 /**
@@ -378,7 +377,7 @@ public class TileEntityDematerializer extends AbstractRiftSidedTileEntity implem
             if(this.getEssence().getRiftEssence() != this.getEssence().getMaxRiftEssence())
             {
                 int adding = essence.removeRiftEssence(increment);
-                this.getEssence().addRawEssence(adding);
+                this.getEssence().addRiftEssence(adding);
             }
         }
     }
@@ -391,7 +390,7 @@ public class TileEntityDematerializer extends AbstractRiftSidedTileEntity implem
             if(essence.getRiftEssence() != essence.getMaxRiftEssence())
             {
                 int adding = this.getEssence().removeRiftEssence(decrement);
-                essence.addRawEssence(adding);
+                essence.addRiftEssence(adding);
             }
 
 

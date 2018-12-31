@@ -2,6 +2,7 @@ package io.github.bfox1.TheRift.init;
 
 import com.google.common.base.Preconditions;
 import io.github.bfox1.TheRift.client.creativetabs.RiftTabManager;
+import io.github.bfox1.TheRift.common.TheRift;
 import io.github.bfox1.TheRift.common.blocks.*;
 import io.github.bfox1.TheRift.common.util.Reference;
 import net.minecraft.block.Block;
@@ -70,7 +71,11 @@ public class BlockInit
             ResourceLocation registryName = Preconditions.checkNotNull(block.getRegistryName(), "Block %s has null registry name", block);
 
             event.getRegistry().register(item.setRegistryName(registryName));
-            ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(block.getRegistryName().toString()));
+
+            if(!TheRift.flag)
+            {
+                ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(block.getRegistryName().toString()));
+            }
 
             block.setCreativeTab(RiftTabManager.RIFT_BLOCKS_TAB);
         }

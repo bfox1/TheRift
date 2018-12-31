@@ -3,7 +3,6 @@ package io.github.bfox1.TheRift.common.util;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-
 import net.minecraft.item.Item;
 
 /**

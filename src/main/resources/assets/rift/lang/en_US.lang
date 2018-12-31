@@ -28,6 +28,7 @@ item.rift:essencecluster.name=Essence Cluster
 item.rift:riftblade.name=Rift Blade
 item.rift:pearl_fragment.name=Pearl Fragment
 item.rift:riftfluxcapacitor.name=Rift Flux Capacitor
+item.rift:rift_Bag.name=Rift Pouch
 
 #Entities
 #############################

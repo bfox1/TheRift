@@ -1,14 +1,9 @@
 package io.github.bfox1.TheRift.common.items;
 
 import io.github.bfox1.TheRift.api.riftessence.IRiftEssence;
-import io.github.bfox1.TheRift.api.riftessence.essencecontainer.IRiftEssenceContainer;
 import io.github.bfox1.TheRift.common.items.essencecontainer.ItemRiftEssenceContainer;
 import io.github.bfox1.TheRift.riftessence.essence.AbstractRiftEssence;
 import io.github.bfox1.TheRift.riftessence.essence.JoryuEssence;
-import io.github.bfox1.TheRift.riftessence.helper.RiftEssenceHelper;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.common.capabilities.ICapabilityProvider;
 
 /**
  * Created by bfox1 on 12/2/2016.

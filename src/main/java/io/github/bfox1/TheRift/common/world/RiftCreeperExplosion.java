@@ -1,6 +1,5 @@
 package io.github.bfox1.TheRift.common.world;
 
-import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import net.minecraft.block.Block;
@@ -10,7 +9,6 @@ import net.minecraft.enchantment.EnchantmentProtection;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityTNTPrimed;
-import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
@@ -63,12 +61,12 @@ public class RiftCreeperExplosion
         try
         {
             Class eClazz = Explosion.class;
-            Field explosionRNG = Explosion.class.getDeclaredField("explosionRNG");
-            Field aBP = Explosion.class.getDeclaredField("affectedBlockPositions");
+            Field explosionRNG = Explosion.class.getDeclaredField("random"); //Random number generation.
+            Field aBP = Explosion.class.getDeclaredField("affectedBlockPositions"); //List<BlockPos>
             Field pKM = Explosion.class.getDeclaredField("playerKnockbackMap");
-            Field eS = eClazz.getDeclaredField("explosionSize");
-            Field flame = eClazz.getDeclaredField("isFlaming");
-            Field smoke = eClazz.getDeclaredField("isSmoking");
+            Field eS = eClazz.getDeclaredField("size");
+            Field flame = eClazz.getDeclaredField("causesFire");
+            Field smoke = eClazz.getDeclaredField("damagesTerrain");
 
             explosionRNG.setAccessible(true);
             aBP.setAccessible(true);

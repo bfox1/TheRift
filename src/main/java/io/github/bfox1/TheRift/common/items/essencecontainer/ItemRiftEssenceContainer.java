@@ -3,7 +3,6 @@ package io.github.bfox1.TheRift.common.items.essencecontainer;
 import io.github.bfox1.TheRift.api.riftessence.IRiftEssence;
 import io.github.bfox1.TheRift.api.riftessence.essencecontainer.IRiftEssenceContainer;
 import io.github.bfox1.TheRift.common.items.RiftItem;
-import io.github.bfox1.TheRift.riftessence.essence.AbstractRiftEssence;
 import net.minecraft.item.ItemStack;
 
 /**
@@ -20,10 +19,10 @@ public abstract class ItemRiftEssenceContainer extends RiftItem implements IRift
         stack.setItemDamage(flag ? dmg : stack.getMaxDamage() - dmg);
         if(this.getEssence().getRiftEssence() == 0)
         {
-            this.getEssence().addRawEssence(stack.getMaxDamage() - stack.getItemDamage());
+            this.getEssence().addRiftEssence(stack.getMaxDamage() - stack.getItemDamage());
         }
         else
-            this.getEssence().addRawEssence(increment + 6);
+            this.getEssence().addRiftEssence(increment + 6);
 
         return stack;
     }

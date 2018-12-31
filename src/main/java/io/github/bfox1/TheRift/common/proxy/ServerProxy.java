@@ -1,16 +1,10 @@
 package io.github.bfox1.TheRift.common.proxy;
 
 
-import io.github.bfox1.TheRift.common.event.ForgeEventHandler;
 import io.github.bfox1.TheRift.common.event.ServerEventHandler;
-import io.github.bfox1.TheRift.common.util.Settings;
-import io.github.bfox1.TheRift.init.BlockInit;
-import io.github.bfox1.TheRift.init.ItemInit;
 import io.github.bfox1.TheRift.riftessence.RiftLinkedSide;
 import net.minecraft.block.Block;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
-import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;

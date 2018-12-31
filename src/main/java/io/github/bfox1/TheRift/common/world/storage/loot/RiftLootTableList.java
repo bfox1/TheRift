@@ -2,7 +2,6 @@ package io.github.bfox1.TheRift.common.world.storage.loot;
 
 import io.github.bfox1.TheRift.common.util.Reference;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.storage.loot.LootTable;
 import net.minecraft.world.storage.loot.LootTableList;
 
 /**

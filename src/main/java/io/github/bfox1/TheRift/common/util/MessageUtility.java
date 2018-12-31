@@ -2,9 +2,7 @@ package io.github.bfox1.TheRift.common.util;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.text.TextComponentString;
-import net.minecraft.util.text.TextComponentUtils;
 import net.minecraft.world.BossInfo;
-import net.minecraftforge.fml.client.config.GuiConfigEntries;
 
 /**
  * Created by bfox1 on 11/25/2016.

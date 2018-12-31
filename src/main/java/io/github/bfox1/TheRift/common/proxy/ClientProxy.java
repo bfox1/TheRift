@@ -2,25 +2,15 @@ package io.github.bfox1.TheRift.common.proxy;
 
 
 import io.github.bfox1.TheRift.client.RiftRenderFactory;
-import io.github.bfox1.TheRift.common.entity.mobs.EntityRiftCreeper;
 import io.github.bfox1.TheRift.common.event.RiftSkinManager;
-import io.github.bfox1.TheRift.common.util.RegisterUtility;
 import io.github.bfox1.TheRift.common.util.Settings;
-import io.github.bfox1.TheRift.init.BlockInit;
-import io.github.bfox1.TheRift.init.ItemInit;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
-import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import java.io.File;
 

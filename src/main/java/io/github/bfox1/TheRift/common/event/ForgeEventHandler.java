@@ -44,7 +44,7 @@ public class ForgeEventHandler
     @SubscribeEvent
     public void onRiftEntityBreakEvent(BlockEvent.BreakEvent event)
     {
-        System.out.println("POOP");
+
         TileEntity entity = event.getWorld().getTileEntity(event.getPos());
 
         if (entity != null) {

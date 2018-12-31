@@ -1,6 +1,5 @@
 package io.github.bfox1.TheRift.common.entity.tileentity;
 
-import io.github.bfox1.TheRift.api.riftessence.IRiftLinkableContainer;
 import io.github.bfox1.TheRift.common.blocks.RiftChest;
 import io.github.bfox1.TheRift.riftessence.RiftLinkedSide;
 import io.github.bfox1.TheRift.server.container.ContainerTestBlock;
@@ -12,7 +11,8 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.*;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 
 import java.util.HashMap;

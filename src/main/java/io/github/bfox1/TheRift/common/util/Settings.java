@@ -1,12 +1,10 @@
 package io.github.bfox1.TheRift.common.util;
 
-import io.github.bfox1.TheRift.common.util.Reference;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-
 import org.lwjgl.input.Keyboard;
 
 public class Settings {
